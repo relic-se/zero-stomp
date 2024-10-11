@@ -27,3 +27,19 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+# FreeCAD
+*.FCStd1
+
+# CircuitPython
+*.mpy
+
+# Python
+__pycache__
+*.pyc
+
+# MacOS-specific files
+*.DS_Store
+
+# IDE-specific files
+.vscode
