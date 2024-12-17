@@ -1,0 +1,5 @@
+adafruit_debouncer
+adafruit_display_text
+adafruit_displayio_ssd1306
+adafruit_wm8960
+pio_i2s
