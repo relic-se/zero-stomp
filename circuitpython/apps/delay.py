@@ -72,37 +72,14 @@ audio_delay.play(audio_in)
 audio_filter.play(audio_delay)
 audio_out.play(audio_filter)
 
-# Setup controls
-device.add_knob(
-    title="Mix",
-    value=device.mix,
-    callback=lambda value: zero_stomp.set_attribute(device, "mix", value),
-)
-device.add_knob(
-    title="Regen",
-    value=audio_delay.decay,
-    callback=lambda value: zero_stomp.set_attribute(audio_delay, "decay", value),
-)
-device.add_knob(
-    title="Delay",
-    value=zero_stomp.unmap_value(delay_ms.c, MIN_DELAY. MAX_DELAY),
-    callback=lambda value: zero_stomp.set_attribute(delay_ms, "c", zero_stomp.map_value(value, MIN_DELAY, MAX_DELAY)),
-)
-device.add_knob(
-    title="Speed",
-    value=zero_stomp.unmap_value(audio_delay.delay_ms.a.rate, MIN_SPEED, MAX_SPEED),
-    callback=lambda value: zero_stomp.set_attribute(audio_delay.delay_ms.a, "rate", zero_stomp.map_value(value, MIN_SPEED, MAX_SPEED))
-)
-device.add_knob(
-    title="Width",
-    value=audio_delay.delay_ms.a.scale,
-    callback=lambda value: zero_stomp.set_attribute(audio_delay.delay_ms.a, "scale", value)
-)
-device.add_knob(
-    title="Filter",
-    value=zero_stomp.unmap_value(audio_filter.filter.frequency, MIN_FILTER, MAX_FILTER),
-    callback=lambda value: zero_stomp.set_attribute(audio_filter.filter, "frequency", zero_stomp.map_value(value, MIN_FILTER, MAX_FILTER))
-)
+# Assign controls
+device.assign_knob("Mix", device, "mix")
+device.assign_knob("Regen", audio_delay, "decay")
+device.assign_knob("Delay", delay_ms, "c", MIN_DELAY, MAX_DELAY)
+
+device.assign_knob("Speed", audio_delay.delay_ms.a, "rate", MIN_SPEED, MAX_SPEED)
+device.assign_knob("Width", audio_delay.delay_ms.a, "scale")
+device.assign_knob("Filter", audio_filter.filter, "frequency", MIN_FILTER, MAX_FILTER)
 
 # Update Loop
 while True:

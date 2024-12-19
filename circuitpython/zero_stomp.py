@@ -325,6 +325,13 @@ class ZeroStomp(displayio.Group):
         ))
         knob.hidden = self.page_count - 1 != self._page
 
+    def assign_knob(self, title: str, o: object, name: str, min_value: float = 0.0, max_value: float = 1.0) -> None:
+        self.add_knob(
+            title=title,
+            value=unmap_value(getattr(o, name), min_value, max_value),
+            callback=lambda value: set_attribute(o, name, map_value(value, min_value, max_value)),
+        )
+
     @property
     def page(self) -> int:
         return self._page

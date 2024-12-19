@@ -70,38 +70,16 @@ audio_distortion.play(audio_in)
 audio_filter.play(audio_distortion)
 audio_out.play(audio_filter)
 
-# Setup controls
+# Assign controls
 # TODO: Simplify with single "Level" knob
-device.add_knob(
-    title="Pre",
-    value=zero_stomp.unmap_value(audio_distortion.pre_gain, MIN_PRE_GAIN, MAX_POST_GAIN),
-    callback=lambda value: zero_stomp.set_attribute(audio_distortion, "pre_gain", zero_stomp.map_value(value, MIN_PRE_GAIN, MAX_PRE_GAIN)),
-)
-device.add_knob(
-    title="Post",
-    value=zero_stomp.unmap_value(audio_distortion.post_gain, MIN_POST_GAIN, MAX_POST_GAIN),
-    callback=lambda value: zero_stomp.set_attribute(audio_distortion, "post_gain", zero_stomp.map_value(value, MIN_POST_GAIN, MAX_POST_GAIN)),
-)
-device.add_knob(
-    title="Drive",
-    value=audio_distortion.drive.a,
-    callback=lambda value: zero_stomp.set_attribute(audio_distortion.drive, "a", value),
-)
-device.add_knob(
-    title="Mix",
-    value=audio_distortion.mix,
-    callback=lambda value: zero_stomp.set_attribute(audio_distortion, "mix", value),
-)
-device.add_knob(
-    title="Low",
-    value=zero_stomp.unmap_value(audio_filter.filter[0].frequency, MAX_FILTER, MIN_FILTER),
-    callback=lambda value: zero_stomp.set_attribute(audio_filter.filter, "frequency", zero_stomp.map_value(value, MAX_FILTER, MIN_FILTER))
-)
-device.add_knob(
-    title="High",
-    value=zero_stomp.unmap_value(audio_filter.filter[1].frequency, MIN_FILTER, MAX_FILTER),
-    callback=lambda value: zero_stomp.set_attribute(audio_filter.filter, "frequency", zero_stomp.map_value(value, MIN_FILTER, MAX_FILTER))
-)
+device.assign_knob("Pre", audio_distortion, "pre_gain", MIN_PRE_GAIN, MAX_PRE_GAIN)
+device.assign_knob("Post", audio_distortion, "post_gain", MIN_POST_GAIN, MAX_POST_GAIN)
+device.assign_knob("Drive", audio_distortion.drive, "a")
+
+device.assign_knob("Mix", device, "mix")
+device.assign_knob("Low", audio_filter.filter[0], "frequency", MAX_FILTER, MIN_FILTER)
+device.assign_knob("High", audio_filter.filter[1], "frequency", MIN_FILTER, MAX_FILTER)
+
 device.add_knob(
     title="Mode",
     value=audio_distortion.mode / (NUM_MODES - 1),
