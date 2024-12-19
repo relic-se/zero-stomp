@@ -17,7 +17,6 @@ import adafruit_debouncer
 import adafruit_displayio_ssd1306
 import adafruit_display_text.label
 import adafruit_midi
-import adafruit_simplemath
 import adafruit_wm8960.advanced
 import neopixel
 
@@ -58,6 +57,24 @@ DISPLAY_WIDTH = 128
 DISPLAY_HEIGHT = 64
 
 SAMPLE_RATE = 48000
+
+# Helper Methods
+
+def set_attribute(items:list|tuple|object, name:str, value:any, offset:float = 0.0) -> None:
+    if type(items) is not list and type(items) is not tuple:
+        items = [items]
+    for i, item in enumerate(items):
+        if hasattr(item, name):
+            if type(value) is float and offset > 0.0:
+                setattr(item, name, value + offset * (i - (len(items) - 1) / 2))
+            else:
+                setattr(item, name, value)
+
+def map_value(value: float, min_value: float, max_value: float) -> float:
+    return min(max(value, 0.0), 1.0) * (max_value - min_value) + min_value
+
+def unmap_value(value: float, min_value: float, max_value: float) -> float:
+    return min(max((value - min_value) / (max_value - min_value), 0.0), 1.0)
 
 # Displayio Controls
 
@@ -269,10 +286,10 @@ class ZeroStomp(displayio.Group):
         self._update_mix()
     
     def _update_mix(self) -> None:
-        self._codec.dac_mute = self.is_bypassed
-        self._codec.mic_output_volume = 0.0 if self.is_bypassed else adafruit_simplemath.map_range(self._mix, adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
-        self._codec.dac_volume = adafruit_simplemath.map_range(self._mix, adafruit_wm8960.advanced.DAC_VOLUME_MIN, 0.0)
-        if not self.is_bypassed and self._mix >= 1.0:
+        self._codec.dac_mute = self.bypassed
+        self._codec.mic_output_volume = 0.0 if self.bypassed else map_value(self._mix, adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
+        self._codec.dac_volume = map_value(self._mix, adafruit_wm8960.advanced.DAC_VOLUME_MIN, 0.0)
+        if not self.bypassed and self._mix >= 1.0:
             self._codec.mic_output = False
         else:
             self._codec.mic_output = True
