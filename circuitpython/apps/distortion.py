@@ -38,6 +38,12 @@ audio_in = audiobusio.I2SIn(
 )
 
 audio_distortion = audiofilters.Distortion(
+    drive=synthio.Math(
+        synthio.MathOperation.SUM,
+        0.0, # Knob
+        0.0, # Expression
+        0.0 # 1.0 by default
+    ),
     mix=1.0,
     sample_rate=zero_stomp.SAMPLE_RATE,
     channel_count=zero_stomp.CHANNELS,
@@ -78,8 +84,8 @@ device.add_knob(
 )
 device.add_knob(
     title="Drive",
-    value=audio_distortion.drive,
-    callback=lambda value: zero_stomp.set_attribute(audio_distortion, "drive", value),
+    value=audio_distortion.drive.a,
+    callback=lambda value: zero_stomp.set_attribute(audio_distortion.drive, "a", value),
 )
 device.add_knob(
     title="Mix",
@@ -105,3 +111,4 @@ device.add_knob(
 # Update Loop
 while True:
     device.update()
+    audio_distortion.drive.b = device.expression
