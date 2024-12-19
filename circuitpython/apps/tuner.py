@@ -54,8 +54,8 @@ controls.hidden = True
 # Begin I2S bus interface with codec
 i2s = pio_i2s.I2S(
     bit_clock=zero_stomp.I2S_BCLK,
-    data_out=zero_stomp.I2S_DAC,
-    data_in=zero_stomp.I2S_ADC,
+    data_out=zero_stomp.I2S_DOUT,
+    data_in=zero_stomp.I2S_DIN,
     channel_count=1,
     sample_rate=zero_stomp.SAMPLE_RATE,
     bits_per_sample=16,  # ulab.numpy only works with integers up to 16-bits

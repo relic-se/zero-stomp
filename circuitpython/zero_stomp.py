@@ -29,8 +29,8 @@ UART_RX = board.GP1
 
 I2S_BCLK = board.GP2
 I2S_LRCLK = board.GP3
-I2S_DAC = board.GP4
-I2S_ADC = board.GP5
+I2S_DOUT = board.GP4
+I2S_DIN = board.GP5
 
 I2C_SDA = board.GP6
 I2C_SCL = board.GP7
