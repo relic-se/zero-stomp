@@ -20,6 +20,11 @@ import adafruit_midi
 import adafruit_wm8960.advanced
 import neopixel
 
+try:
+    from typing import Callable
+except ImportError:
+    pass
+
 displayio.release_displays()
 
 # Pin Configuration
@@ -48,7 +53,6 @@ ADC_0 = board.GP26
 ADC_1 = board.GP27
 ADC_2 = board.GP28
 ADC_EXPR = board.GP29
-ADC_PINS = (ADC_0, ADC_1, ADC_2, ADC_EXPR)
 NUM_POTS = 3
 
 # Constants
@@ -57,6 +61,9 @@ DISPLAY_WIDTH = 128
 DISPLAY_HEIGHT = 64
 
 SAMPLE_RATE = 48000
+CHANNELS = 2
+
+SWITCH_SHORT_DURATION = 0.4
 
 # Helper Methods
 
@@ -84,10 +91,20 @@ palette_white[0] = 0xFFFFFF
 palette_black = displayio.Palette(1)
 palette_black[0] = 0x000000
 
-class WheelControl(displayio.Group):
+class Knob(displayio.Group):
 
-    def __init__(self, x:int, y:int, radius:int=16, knob_radius:int=4):
+    def __init__(self,
+        title:str = "",
+        value:float = 0.5,
+        callback:Callable = None,
+        x:int = 0,
+        y:int = 0,
+        radius:int=16,
+        knob_radius:int=4
+    ):
         super().__init__(x=x, y=y)
+
+        self.callback = callback
         self._radius = radius
         self._knob_radius = knob_radius
 
@@ -120,35 +137,62 @@ class WheelControl(displayio.Group):
             y=0,
         ))
         self.append(self._knob)
-        self.position = 0.5
 
-        # Text
-        self._label = adafruit_display_text.label.Label(
+        # Title
+        self._title = adafruit_display_text.label.Label(
             font=terminalio.FONT,
-            text="",
+            text=title,
             color=0xFFFFFF,
             anchor_point=(0.5, 0.5),
             anchored_position=(0, radius + 4)
         )
-        self.append(self._label)
+        self.append(self._title)
+
+        # Value
+        self.reset(value)
 
     @property
-    def position(self) -> float:
-        return self._position
+    def title(self) -> str:
+        return self._title.text
     
-    @position.setter
-    def position(self, value:float) -> None:
-        self._position = value
-        self._knob.x = int((self._radius - self._knob_radius) * math.sin(value * math.pi * 2))
-        self._knob.y = int((self._radius - self._knob_radius) * math.cos(value * math.pi * 2))
+    @title.setter
+    def title(self, value:str) -> None:
+        self._title.text = value
 
     @property
-    def label(self) -> str:
-        return self._label.text
+    def value(self) -> float:
+        return self._value
     
-    @label.setter
-    def label(self, value:str) -> None:
-        self._label.text = value
+    @value.setter
+    def value(self, value:float) -> None:
+        if (self._previous == self._value # Actively updating
+            or (self._previous < value and value > self._value) # Moved right
+            or (self._previous > value and value < self._value)): # Moved left
+            self._set_value(value)
+        self._previous = value
+    
+    def reset(self, value:float = None) -> None:
+        self._previous = None
+        if value is not None:
+            self._set_value(value)
+    
+    def _set_value(self, value: float) -> None:
+        self._value = value
+        self._do_callback()
+        self._knob.x = int((self._radius - self._knob_radius) * math.sin(self._value * math.pi * 2))
+        self._knob.y = int((self._radius - self._knob_radius) * math.cos(self._value * math.pi * 2))
+
+    @property
+    def callback(self) -> Callable:
+        return self._callback
+    
+    @callback.setter
+    def callback(self, value:Callable) -> None:
+        self._callback = value if callable(value) else None
+
+    def _do_callback(self) -> None:
+        if self._callback is not None:
+            self._callback(self._value)
 
 class ZeroStomp(displayio.Group):
 
@@ -156,8 +200,8 @@ class ZeroStomp(displayio.Group):
         super().__init__()
 
         # NeoPixel
-        self.pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
-        self.pixel.fill((0, 0, 255))
+        self._pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
+        self.pixel = (0, 0, 255)
 
         # Displayio
         self._display_bus = displayio.FourWire(
@@ -186,17 +230,18 @@ class ZeroStomp(displayio.Group):
         )
         self.append(self._title)
 
-        # Wheel controls
-        self.wheels = displayio.Group()
-        self.append(self.wheels)
-        for i in range(NUM_POTS):
-            self.wheels.append(WheelControl(DISPLAY_WIDTH // (NUM_POTS + 1) * (i + 1), DISPLAY_HEIGHT//2))
-        self.wheels.hidden = True
+        # Knobs
+        self._knobs = displayio.Group()
+        self.append(self._knobs)
+        self._page = 0
+        self._knob_pins = (
+            analogio.AnalogIn(ADC_0),
+            analogio.AnalogIn(ADC_1),
+            analogio.AnalogIn(ADC_2)
+        )
+        self._expression_pin = analogio.AnalogIn(ADC_EXPR)
 
-        self.pixel.fill((0, 255, 0))
-
-        # ADC Controls
-        self._adc_pins = tuple([analogio.AnalogIn(pin) for pin in ADC_PINS])
+        self.pixel = (0, 255, 0)
 
         # MIDI
         self._midi_uart_bus = busio.UART(
@@ -250,12 +295,13 @@ class ZeroStomp(displayio.Group):
 
         # Stomp Switch
         self._stomp_led = pwmio.PWMOut(STOMP_LED)
+        self._stomp_led_control = True
         self._stomp_switch_pin = digitalio.DigitalInOut(STOMP_SWITCH)
         self._stomp_switch_pin.direction = digitalio.Direction.INPUT
         self._stomp_switch_pin.pull = digitalio.Pull.UP
         self._stomp_switch = adafruit_debouncer.Debouncer(self._stomp_switch_pin)
 
-        self.pixel.fill((255, 0, 0))
+        self.pixel = (255, 0, 0)
 
     @property
     def title(self) -> str:
@@ -266,14 +312,39 @@ class ZeroStomp(displayio.Group):
         self._title.text = value
 
     @property
-    def values(self) -> tuple[float]:
-        values = tuple([pin.value / 65535 for pin in self._adc_pins])
-        for i in range(NUM_POTS):
-            self.wheels[i].position = values[i]
-        return values
+    def knobs(self) -> displayio.Group:
+        return self._knobs
+    
+    def add_knob(self, title: str, value: float = 0.0, callback: Callable = None) -> None:
+        self._knobs.append(knob := Knob(
+            title=title,
+            value=value,
+            callback=callback,
+            x=DISPLAY_WIDTH // (NUM_POTS + 1) * (len(self._knobs) % NUM_POTS + 1),
+            y=DISPLAY_HEIGHT // 2,
+        ))
+        knob.hidden = self.page_count - 1 != self._page
+
+    @property
+    def page(self) -> int:
+        return self._page
     
     @property
-    def is_bypassed(self) -> bool:
+    def page_count(self) -> int:
+        return max(len(self._knobs) - 1, 0) // NUM_POTS + 1
+    
+    @property
+    def page_knob_count(self) -> int:
+        return min(max(len(self._knobs) - self._page * NUM_POTS, 0), NUM_POTS)
+    
+    def next_page(self) -> None:
+        self._page = (self._page + 1) % self.page_count
+        for i, knob in enumerate(self._knobs):
+            knob.hidden = i // NUM_POTS != self._page
+            knob.reset()
+
+    @property
+    def bypassed(self) -> bool:
         return self._stomp_switch.value
     
     @property
@@ -295,7 +366,37 @@ class ZeroStomp(displayio.Group):
             self._codec.mic_output = True
 
     def update(self) -> None:
+        # Switch
         self._stomp_switch.update()
-        self._stomp_led.duty_cycle = 0 if self.is_bypassed else 2 ** 16
+        if self._stomp_led_control:
+            self._stomp_led.duty_cycle = 0 if self.bypassed else 65536
         if self._stomp_switch.rose or self._stomp_switch.fell:
             self._update_mix()
+            if self._stomp_switch.last_duration < SWITCH_SHORT_DURATION:
+                self.next_page()
+
+        # Knobs
+        for i in range(self.page_knob_count):
+            self._knobs[i + self._page * NUM_POTS].value = self._knob_pins[i].value / 65536
+
+    @property
+    def expression(self) -> float:
+        return self._expression_pin.value / 65536
+    
+    @property
+    def pixel(self) -> tuple:
+        return self._pixel_color
+    
+    @pixel.setter
+    def pixel(self, value: tuple) -> None:
+        self._pixel_color = value
+        self._pixel.fill(value)
+
+    @property
+    def led(self) -> float:
+        return self._stomp_led.duty_cycle / 65536
+    
+    @led.setter
+    def led(self, value: float) -> None:
+        self._stomp_led_control = False
+        self._stomp_led.duty_cycle = map_value(value, 0, 65536)
