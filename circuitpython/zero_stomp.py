@@ -387,6 +387,7 @@ class ZeroStomp(displayio.Group):
         self._stomp_switch_pin.direction = digitalio.Direction.INPUT
         self._stomp_switch_pin.pull = digitalio.Pull.UP
         self._stomp_switch = adafruit_debouncer.Debouncer(self._stomp_switch_pin)
+        self._stomp_count = 0
 
         self.pixel = (255, 0, 0)
 
@@ -467,7 +468,13 @@ class ZeroStomp(displayio.Group):
         if self._stomp_switch.rose or self._stomp_switch.fell:
             self._update_mix()
             if self._stomp_switch.last_duration < SWITCH_SHORT_DURATION:
-                self.next_page()
+                self._stomp_count += 1
+                if self._stomp_count > 1 and len(get_programs()) > 1:
+                    load_next_program()
+                else:
+                    self.next_page()
+            else:
+                self._stomp_count = 0
 
         # Knobs
         for i in range(self.page_knob_count):
