@@ -7,8 +7,11 @@ import board
 import busio
 import digitalio
 import displayio
+import json
 import math
+import os
 import pwmio
+import supervisor
 import terminalio
 import usb_midi
 import vectorio
@@ -65,6 +68,9 @@ CHANNELS = 2
 
 SWITCH_SHORT_DURATION = 0.4
 
+SCRIPTS = "/apps"
+SETTINGS = "/settings.json"
+
 # Helper Methods
 
 def set_attribute(items:list|tuple|object, name:str, value:any, offset:float = 0.0) -> None:
@@ -82,6 +88,87 @@ def map_value(value: float, min_value: float, max_value: float) -> float:
 
 def unmap_value(value: float, min_value: float, max_value: float) -> float:
     return min(max((value - min_value) / (max_value - min_value), 0.0), 1.0)
+
+# Global Methods
+
+_settings = None
+def get_settings() -> dict:
+    global _settings
+    if _settings is None:
+        try:
+            with open(SETTINGS) as file:
+                _settings = json.load(file)
+        except (OSError, ValueError):
+            _settings = {}
+    return _settings
+
+def save_settings() -> None:
+    settings = get_settings()
+    with open(SETTINGS, "w") as file:
+        json.dump(settings, file)
+
+def get_setting(*path) -> any:
+    settings = get_settings()
+    for name in path:
+        if name in settings:
+            settings = settings[name]
+        else:
+            return None
+    return settings
+
+def update_setting(value: any, *path) -> None:
+    settings = get_settings()
+    for i, name in enumerate(path):
+        if i == len(path) - 1:
+            settings[name] = value
+        else:
+            if not name in settings:
+                settings[name] = {}
+            settings = settings[name]
+
+_programs = None
+def get_programs() -> tuple:
+    global _programs
+    if _programs is None:
+        _programs = tuple(filter(lambda filename: filename.endswith(".py"), os.listdir(SCRIPTS)))
+    return _programs
+
+def get_default_program() -> str:
+    programs = get_programs()
+    return programs[0] if programs else None
+
+def get_current_program() -> str:
+    program = get_setting("global", "program")
+    if not program or not program in get_programs():
+        program = get_default_program()
+    return program
+
+def get_next_program() -> str:
+    program = get_current_program()
+    if program is None:
+        return None
+    programs = get_programs()
+    return programs[(programs.index(program) + 1) % len(programs)]
+
+def load_program(program: str = None, save: bool = True) -> None:
+    if program is None:
+        program = get_current_program()
+    if program is None or not program:
+        raise OSError("Unable to load program")
+    if save:
+        update_setting(program, "global", "program")
+    supervisor.set_next_code_file(
+        filename=SCRIPTS + "/" + program,
+        reload_on_success=True,
+        reload_on_error=False,
+        sticky_on_success=True,
+        sticky_on_error=False,
+        sticky_on_reload=False,
+    )
+    supervisor.reload()
+
+def load_next_program(save: bool = True) -> None:
+    load_program(get_next_program(), save)
 
 # Displayio Controls
 
