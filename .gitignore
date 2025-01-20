@@ -48,3 +48,10 @@ __pycache__
 
 # IDE-specific files
 .vscode
+
+# FreeCAD
+*.FCBak
+
+# PrusaSlicer
+*.3mf
+*.gcode
