@@ -68,6 +68,7 @@ DISPLAY_HEIGHT = 64
 SAMPLE_RATE = 48000
 BITS_PER_SAMPLE = 16
 CHANNELS = 2
+SAMPLES_SIGNED = True
 BUFFER_SIZE = 1024
 
 SWITCH_SHORT_DURATION = 0.4
@@ -426,6 +427,7 @@ class ZeroStomp(displayio.Group):
             data_in=I2S_DIN,
             channel_count=CHANNELS,
             sample_rate=SAMPLE_RATE,
+            samples_signed=SAMPLES_SIGNED,
             buffer_size=BUFFER_SIZE,
         )
 
