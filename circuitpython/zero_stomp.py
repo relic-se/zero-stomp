@@ -197,13 +197,15 @@ class Knob(displayio.Group):
         x:int = 0,
         y:int = 0,
         radius:int=9,
-        knob_radius:int=2
+        knob_radius:int=2,
+        threshold:float=0.01,
     ):
         super().__init__(x=x, y=y)
 
         self.callback = callback
         self._radius = radius
         self._knob_radius = knob_radius
+        self._threshold = threshold
 
         # Outer circle
         self.append(vectorio.Circle(
@@ -262,11 +264,18 @@ class Knob(displayio.Group):
     
     @value.setter
     def value(self, value:float) -> None:
-        if ((self._previous is None or self._previous == self._value) # Actively updating
-            or (self._previous < value and value > self._value) # Moved right
-            or (self._previous > value and value < self._value)): # Moved left
-            self._set_value(value)
-        self._previous = value
+        if self._previous is None:
+            self._previous = value
+        elif self._previous == self._value:  # Actively updating
+            if abs(value - self._value) >= self._threshold:
+                self._set_value(value)
+                self._previous = value
+        else:
+            if self._previous < self._value and value >= self._value:  # Moved right
+                self._set_value(value)
+            if self._previous > self._value and value <= self._value:  # Moved left
+                self._set_value(value)
+            self._previous = value
     
     def reset(self, value:float = None) -> None:
         self._previous = None
