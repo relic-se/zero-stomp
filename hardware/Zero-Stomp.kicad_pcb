@@ -16018,7 +16018,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R10"
-			(at -1.168 1.104 225)
+			(at -1.168 1.104 -135)
 			(layer "F.SilkS")
 			(uuid "9e68007b-544b-4bb3-9f8c-d33ab64def4f")
 			(effects
@@ -33593,6 +33593,39 @@
 	(dimension
 		(type aligned)
 		(layer "Dwgs.User")
+		(uuid "745e371c-af46-42d0-a3aa-beb3eb4fcf1f")
+		(pts
+			(xy 148.6 46.85) (xy 115.316 46.85)
+		)
+		(height 11.671)
+		(gr_text "1.3104 in"
+			(at 131.958 34.029 0)
+			(layer "Dwgs.User")
+			(uuid "745e371c-af46-42d0-a3aa-beb3eb4fcf1f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(format
+			(prefix "")
+			(suffix "")
+			(units 3)
+			(units_format 1)
+			(precision 4)
+		)
+		(style
+			(thickness 0.15)
+			(arrow_length 1.27)
+			(text_position_mode 0)
+			(extension_height 0.58642)
+			(extension_offset 0.5) keep_text_aligned)
+	)
+	(dimension
+		(type aligned)
+		(layer "Dwgs.User")
 		(uuid "76edba24-0f1a-47c0-b7c3-c9b576aed6cf")
 		(pts
 			(xy 101.6 41.85) (xy 101.6 67.25)
@@ -33760,11 +33793,11 @@
 		(layer "Dwgs.User")
 		(uuid "a49a3223-cfe9-4e85-8d59-2d27db665002")
 		(pts
-			(xy 143.600001 67.239991) (xy 143.600001 41.839991)
+			(xy 143.6 59.055) (xy 143.600001 41.839991)
 		)
 		(height 8.8)
-		(gr_text "1.0000 in"
-			(at 151.250001 54.539991 90)
+		(gr_text "0.6778 in"
+			(at 151.250001 50.447495 89.99999334)
 			(layer "Dwgs.User")
 			(uuid "a49a3223-cfe9-4e85-8d59-2d27db665002")
 			(effects
@@ -33859,13 +33892,46 @@
 		(layer "Dwgs.User")
 		(uuid "c1e21666-9122-4ad9-a891-36897f2a3eee")
 		(pts
-			(xy 148.6 46.85) (xy 118.21 46.85)
+			(xy 148.6 46.85) (xy 120.65 46.85)
 		)
 		(height 8.8)
-		(gr_text "1.1965 in"
-			(at 133.405 36.9 0)
+		(gr_text "1.1004 in"
+			(at 134.625 36.9 0)
 			(layer "Dwgs.User")
 			(uuid "c1e21666-9122-4ad9-a891-36897f2a3eee")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(format
+			(prefix "")
+			(suffix "")
+			(units 3)
+			(units_format 1)
+			(precision 4)
+		)
+		(style
+			(thickness 0.15)
+			(arrow_length 1.27)
+			(text_position_mode 0)
+			(extension_height 0.58642)
+			(extension_offset 0.5) keep_text_aligned)
+	)
+	(dimension
+		(type aligned)
+		(layer "Dwgs.User")
+		(uuid "e1125f56-2fbd-4aa9-8dcd-ee8a4af16d44")
+		(pts
+			(xy 143.600001 41.839991) (xy 143.6 72.263)
+		)
+		(height -15.215266)
+		(gr_text "1.1978 in"
+			(at 157.665266 57.051496 89.99999623)
+			(layer "Dwgs.User")
+			(uuid "e1125f56-2fbd-4aa9-8dcd-ee8a4af16d44")
 			(effects
 				(font
 					(size 1 1)
