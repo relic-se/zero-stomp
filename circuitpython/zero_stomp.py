@@ -352,7 +352,7 @@ class ZeroStomp(displayio.Group):
         self._expression_pin = analogio.AnalogIn(ADC_EXPR)
 
         # Stomp Switch
-        self._stomp_led = pwmio.PWMOut(STOMP_LED)
+        self._stomp_led = pwmio.PWMOut(STOMP_LED, frequency=100000)  # frequency is out of hearing range to prevent audible noise
         self._stomp_led_control = True
         self._stomp_switch_pin = digitalio.DigitalInOut(STOMP_SWITCH)
         self._stomp_switch_pin.direction = digitalio.Direction.INPUT
