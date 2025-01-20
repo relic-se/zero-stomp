@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: GPLv3
 
+import array
 import displayio
 import math
 import terminalio
@@ -10,7 +11,6 @@ import ulab.utils
 import vectorio
 
 import adafruit_display_text.label
-import pio_i2s
 
 import zero_stomp
 
@@ -43,38 +43,31 @@ controls.append(note_text)
 cents_rect = vectorio.Rectangle(
     pixel_shader=zero_stomp.palette_white,
     width=1,
-    height=zero_stomp.DISPLAY_HEIGHT//2,
+    height=zero_stomp.DISPLAY_HEIGHT//4,
     x=zero_stomp.DISPLAY_WIDTH//2,
-    y=zero_stomp.DISPLAY_HEIGHT//4,
+    y=zero_stomp.DISPLAY_HEIGHT*3//8,
 )
 controls.append(cents_rect)
 
 controls.hidden = True
 
-# Begin I2S bus interface with codec
-i2s = pio_i2s.I2S(
-    bit_clock=zero_stomp.I2S_BCLK,
-    data_out=zero_stomp.I2S_DOUT,
-    data_in=zero_stomp.I2S_DIN,
-    channel_count=1,
-    sample_rate=zero_stomp.SAMPLE_RATE,
-    bits_per_sample=16,  # ulab.numpy only works with integers up to 16-bits
-    samples_signed=True,
-    buffer_size=4096,  # increase this value to improve the resolution of the spectrogram
-)
+# Create buffer for recording data
+samples = 1024 if zero_stomp.is_rp2040() else 4096
+buffer = array.array('h', [0] * samples * 2)
 
 # Determine the minimum and maximum possible frequencies
-min_freq = i2s.sample_rate / i2s.buffer_size
-max_freq = i2s.sample_rate / 2  # nyquist
+min_freq = zero_stomp.SAMPLE_RATE / samples  # 2 bytes per sample and only using 1 channel
+max_freq = zero_stomp.SAMPLE_RATE / 2  # nyquist
 
 # Linear distribution of indexes used to calculate weighted mean
-dist = np.arange(i2s.buffer_size // 2, dtype=np.int16)
+dist = np.arange(samples // 2, dtype=np.int16)
 
 while True:
     device.update()
     
     # Grab a single buffer from the codec and convert it to an np.ndarray object
-    data = np.array(i2s.read(block=True), dtype=np.int16)
+    device.i2s.record(buffer, len(buffer))
+    data = np.array(buffer, dtype=np.int16)[0::2] # Only use left channel
     
     # Calculate maximum level
     mean = np.mean(data)

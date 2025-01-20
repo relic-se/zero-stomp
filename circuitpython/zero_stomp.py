@@ -3,12 +3,14 @@
 # SPDX-License-Identifier: GPLv3
 
 import analogio
+import audiobusio
 import board
 import busio
 import digitalio
 import displayio
 import json
 import math
+import microcontroller
 import os
 import pwmio
 import supervisor
@@ -64,7 +66,9 @@ DISPLAY_WIDTH = 128
 DISPLAY_HEIGHT = 64
 
 SAMPLE_RATE = 48000
+BITS_PER_SAMPLE = 16
 CHANNELS = 2
+BUFFER_SIZE = 1024
 
 SWITCH_SHORT_DURATION = 0.4
 
@@ -83,11 +87,17 @@ def set_attribute(items:list|tuple|object, name:str, value:any, offset:float = 0
             else:
                 setattr(item, name, value)
 
+def constrain(value: float, min_value: float = 0.0, max_value: float = 1.0) -> float:
+    return min(max(value, min_value), max_value)
+
 def map_value(value: float, min_value: float, max_value: float) -> float:
-    return min(max(value, 0.0), 1.0) * (max_value - min_value) + min_value
+    return constrain(value) * (max_value - min_value) + min_value
 
 def unmap_value(value: float, min_value: float, max_value: float) -> float:
-    return min(max((value - min_value) / (max_value - min_value), 0.0), 1.0)
+    return constrain((value - min_value) / (max_value - min_value))
+
+def is_rp2040() -> bool:
+    return microcontroller.cpu.uid == b'EGAP\\\x0b\xc4J'
 
 # Global Methods
 
@@ -186,8 +196,8 @@ class Knob(displayio.Group):
         callback:Callable = None,
         x:int = 0,
         y:int = 0,
-        radius:int=16,
-        knob_radius:int=4
+        radius:int=9,
+        knob_radius:int=2
     ):
         super().__init__(x=x, y=y)
 
@@ -231,7 +241,7 @@ class Knob(displayio.Group):
             text=title,
             color=0xFFFFFF,
             anchor_point=(0.5, 0.5),
-            anchored_position=(0, radius + 4)
+            anchored_position=(0, radius + 6)
         )
         self.append(self._title)
 
@@ -252,7 +262,7 @@ class Knob(displayio.Group):
     
     @value.setter
     def value(self, value:float) -> None:
-        if (self._previous == self._value # Actively updating
+        if ((self._previous is None or self._previous == self._value) # Actively updating
             or (self._previous < value and value > self._value) # Moved right
             or (self._previous > value and value < self._value)): # Moved left
             self._set_value(value)
@@ -266,8 +276,9 @@ class Knob(displayio.Group):
     def _set_value(self, value: float) -> None:
         self._value = value
         self._do_callback()
-        self._knob.x = int((self._radius - self._knob_radius) * math.sin(self._value * math.pi * 2))
-        self._knob.y = int((self._radius - self._knob_radius) * math.cos(self._value * math.pi * 2))
+        value = math.pi * (-value * 1.5 - 0.25)
+        self._knob.x = int((self._radius - self._knob_radius) * math.sin(value))
+        self._knob.y = int((self._radius - self._knob_radius) * math.cos(value))
 
     @property
     def callback(self) -> Callable:
@@ -317,6 +328,8 @@ class ZeroStomp(displayio.Group):
         )
         self.append(self._title)
 
+        self.pixel = (0, 255, 255)
+
         # Knobs
         self._knobs = displayio.Group()
         self.append(self._knobs)
@@ -327,6 +340,15 @@ class ZeroStomp(displayio.Group):
             analogio.AnalogIn(ADC_2)
         )
         self._expression_pin = analogio.AnalogIn(ADC_EXPR)
+
+        # Stomp Switch
+        self._stomp_led = pwmio.PWMOut(STOMP_LED)
+        self._stomp_led_control = True
+        self._stomp_switch_pin = digitalio.DigitalInOut(STOMP_SWITCH)
+        self._stomp_switch_pin.direction = digitalio.Direction.INPUT
+        self._stomp_switch_pin.pull = digitalio.Pull.UP
+        self._stomp_switch = adafruit_debouncer.Debouncer(self._stomp_switch_pin)
+        self._stomp_count = 0
 
         self.pixel = (0, 255, 0)
 
@@ -346,14 +368,21 @@ class ZeroStomp(displayio.Group):
             midi_out=usb_midi.ports[1],
         )
 
+        self.pixel = (255, 255, 0)
+
         # Audio Codec
         self._codec = adafruit_wm8960.advanced.WM8960_Advanced(busio.I2C(I2C_SCL, I2C_SDA))
 
         ## Digital Interface
         self._codec.sample_rate = SAMPLE_RATE
-        self._codec.bit_depth = 16
+        self._codec.bit_depth = BITS_PER_SAMPLE
         self._codec.adc = True
         self._codec.dac = True
+        self._codec.dac_output = True
+
+        # We aren't using ADCLRCLK, so set it as GPIO
+        self._codec.gpio_output = True
+        self._codec.gpio_output_mode = 4 # sysclk output
 
         ## Enable single-ended mic (INPUT1) input and pass through mic and boost amplifier
         self._codec.mic = True
@@ -378,18 +407,20 @@ class ZeroStomp(displayio.Group):
 
         self.mix = 0.0
 
-        # TODO: I2S, PIO or native?
-
-        # Stomp Switch
-        self._stomp_led = pwmio.PWMOut(STOMP_LED)
-        self._stomp_led_control = True
-        self._stomp_switch_pin = digitalio.DigitalInOut(STOMP_SWITCH)
-        self._stomp_switch_pin.direction = digitalio.Direction.INPUT
-        self._stomp_switch_pin.pull = digitalio.Pull.UP
-        self._stomp_switch = adafruit_debouncer.Debouncer(self._stomp_switch_pin)
-        self._stomp_count = 0
-
         self.pixel = (255, 0, 0)
+
+        ## Begin digital audio bus
+        self.i2s = audiobusio.I2S(
+            bit_clock=I2S_BCLK,
+            word_select=I2S_LRCLK,
+            data_out=I2S_DOUT,
+            data_in=I2S_DIN,
+            channel_count=CHANNELS,
+            sample_rate=SAMPLE_RATE,
+            buffer_size=BUFFER_SIZE,
+        )
+
+        self.pixel = (32, 0, 32)
 
     @property
     def title(self) -> str:
@@ -417,7 +448,7 @@ class ZeroStomp(displayio.Group):
         self.add_knob(
             title=title,
             value=unmap_value(getattr(o, name), min_value, max_value),
-            callback=lambda value: set_attribute(o, name, map_value(value, min_value, max_value)),
+            callback=lambda value, min_value=min_value, max_value=max_value: set_attribute(o, name, map_value(value, min_value, max_value)),
         )
 
     @property
@@ -448,12 +479,12 @@ class ZeroStomp(displayio.Group):
     
     @mix.setter
     def mix(self, value:float) -> None:
-        self._mix = value
+        self._mix = constrain(value)
         self._update_mix()
     
     def _update_mix(self) -> None:
         self._codec.dac_mute = self.bypassed
-        self._codec.mic_output_volume = 0.0 if self.bypassed else map_value(self._mix, adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
+        self._codec.mic_output_volume = 0.0 if self.bypassed else map_value(1.0 - self._mix, adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
         self._codec.dac_volume = map_value(self._mix, adafruit_wm8960.advanced.DAC_VOLUME_MIN, 0.0)
         if not self.bypassed and self._mix >= 1.0:
             self._codec.mic_output = False
@@ -464,7 +495,7 @@ class ZeroStomp(displayio.Group):
         # Switch
         self._stomp_switch.update()
         if self._stomp_led_control:
-            self._stomp_led.duty_cycle = 0 if self.bypassed else 65536
+            self._stomp_led.duty_cycle = 0 if self.bypassed else 65535
         if self._stomp_switch.rose or self._stomp_switch.fell:
             self._update_mix()
             if self._stomp_switch.last_duration < SWITCH_SHORT_DURATION:
@@ -478,11 +509,11 @@ class ZeroStomp(displayio.Group):
 
         # Knobs
         for i in range(self.page_knob_count):
-            self._knobs[i + self._page * NUM_POTS].value = self._knob_pins[i].value / 65536
+            self._knobs[i + self._page * NUM_POTS].value = self._knob_pins[i].value / 65535
 
     @property
     def expression(self) -> float:
-        return self._expression_pin.value / 65536
+        return self._expression_pin.value / 65535
     
     @property
     def pixel(self) -> tuple:
@@ -495,9 +526,9 @@ class ZeroStomp(displayio.Group):
 
     @property
     def led(self) -> float:
-        return self._stomp_led.duty_cycle / 65536
+        return self._stomp_led.duty_cycle / 65535
     
     @led.setter
     def led(self, value: float) -> None:
         self._stomp_led_control = False
-        self._stomp_led.duty_cycle = map_value(value, 0, 65536)
+        self._stomp_led.duty_cycle = int(map_value(value, 0, 65535))

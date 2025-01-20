@@ -30,7 +30,7 @@ waveforms = (
         np.full(SAMPLE_SIZE//2, -SAMPLE_VOLUME, dtype=np.int16)
     )),
 )
-waveform = 0
+waveform = -1
 
 # Device configuration
 device = zero_stomp.ZeroStomp()
@@ -38,24 +38,16 @@ device.title = "Tremolo"
 device.mix = 1.0
 
 # Audio Objects
-# TODO: Support for I2SInOut in CircuitPython core
-audio_in = audiobusio.I2SIn(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data=zero_stomp.I2S_DIN,
-    channel_count=zero_stomp.CHANNELS,
-    sample_rate=zero_stomp.SAMPLE_RATE,
-)
-
-audio_mixer = audiomixer.Mixer(
+mixer = audiomixer.Mixer(
     voice_count=1,
     sample_rate=zero_stomp.SAMPLE_RATE,
     channel_count=zero_stomp.CHANNELS,
 )
-audio_mixer.voice[0].level = synthio.Math(
+mixer.voice[0].level = synthio.Math(
     synthio.MathOperation.SCALE_OFFSET,
     synthio.LFO(
-        waveform=waveforms[waveform],
+        waveform=np.zeros(SAMPLE_SIZE, dtype=np.int16),
+        rate=1.0,
         scale=0.5,
         offset=-0.5,
     ),
@@ -64,27 +56,26 @@ audio_mixer.voice[0].level = synthio.Math(
         0.0, # Depth
         0.0, # Expression
         0.0 # defaults to 1.0
-    )
+    ),
     1.0 # Level
 )
 
-audio_out = audiobusio.I2SOut(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data=zero_stomp.I2S_DOUT,
-)
-
 # Audio Chain
-audio_mixer.play(audio_in)
-audio_out.play(audio_mixer)
+device.i2s.play(mixer)
+mixer.voice[0].play(device.i2s)
 
 # Assign controls
 def set_waveform(index: int):
-    waveform = index % len(waveforms)
-    audio_mixer.voice[0].level.a.waveform = waveforms[waveform]
+    global waveform
+    if index != waveform:
+        waveform = index % len(waveforms)
+        # waveform must be updated by element
+        for i in range(SAMPLE_SIZE):
+            mixer.voice[0].level.a.waveform[i] = waveforms[waveform][i]
+set_waveform(waveform)
 
-device.assign_knob("Rate", audio_mixer.voice[0].level.a, "rate", MIN_SPEED, MAX_SPEED)
-device.assign_knob("Depth", audio_mixer.voice[0].level.b, "a")
+device.assign_knob("Rate", mixer.voice[0].level.a, "rate", MIN_SPEED, MAX_SPEED)
+device.assign_knob("Depth", mixer.voice[0].level.b, "a")
 device.add_knob(
     title="Wave",
     value=waveform / (len(waveforms) - 1),
@@ -94,5 +85,5 @@ device.add_knob(
 # Update Loop
 while True:
     device.update()
-    audio_mixer.voice[0].level.b.b = device.expression
-    device.led = 0 if device.bypassed else audio_mixer.voice[0].level.value
+    mixer.voice[0].level.b.b = device.expression
+    device.led = 0 if device.bypassed else mixer.voice[0].level.value

@@ -4,4 +4,3 @@ adafruit_displayio_ssd1306
 adafruit_midi
 adafruit_neopixel
 adafruit_wm8960
-pio_i2s
