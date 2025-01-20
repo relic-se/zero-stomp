@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPLv3
 
 import os
+import storage
 import supervisor
 import usb_cdc
 import usb_hid
@@ -23,6 +24,15 @@ usb_midi.set_names(
 
 usb_hid.disable()
 usb_cdc.enable(console=True, data=False)
+
+# Configure storage
+
+storage.remount("/", readonly=False)
+m = storage.getmount("/")
+m.label = "ZERO_STOMP"
+
+storage.remount("/", readonly=False)
+storage.enable_usb_drive()
 
 # Ensure that apps folder exists
 
