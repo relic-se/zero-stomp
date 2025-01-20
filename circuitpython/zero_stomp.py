@@ -381,7 +381,12 @@ class ZeroStomp(displayio.Group):
         self.pixel = (255, 255, 0)
 
         # Audio Codec
-        self._codec = adafruit_wm8960.advanced.WM8960_Advanced(busio.I2C(I2C_SCL, I2C_SDA))
+        self._i2c = busio.I2C(
+            scl=I2C_SCL,
+            sda=I2C_SDA,
+            frequency=1000000,  # fast mode plus
+        )
+        self._codec = adafruit_wm8960.advanced.WM8960_Advanced(self._i2c)
 
         ## Digital Interface
         self._codec.sample_rate = SAMPLE_RATE
@@ -413,9 +418,9 @@ class ZeroStomp(displayio.Group):
         self._codec.headphone = True
         self._codec.mono_output = False
         self._codec.headphone_zero_cross = True
-        self._codec.headphone_volume = 0.0
 
         self.mix = 0.0
+        self.level = 1.0
 
         self.pixel = (255, 0, 0)
 
@@ -461,6 +466,9 @@ class ZeroStomp(displayio.Group):
             value=unmap_value(getattr(o, name), min_value, max_value),
             callback=lambda value, min_value=min_value, max_value=max_value: set_attribute(o, name, map_value(value, min_value, max_value)),
         )
+        
+    def knob_value(self, index: int) -> float:
+        return self._knob_pins[index % len(self._knob_pins)].value / 65535
 
     @property
     def page(self) -> int:
@@ -494,13 +502,24 @@ class ZeroStomp(displayio.Group):
         self._update_mix()
     
     def _update_mix(self) -> None:
-        self._codec.dac_mute = self.bypassed
+        if self._codec.dac_mute != self.bypassed:
+            self._codec.dac_mute = self.bypassed
         self._codec.mic_output_volume = 0.0 if self.bypassed else map_value(1.0 - self._mix, adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
         self._codec.dac_volume = map_value(self._mix, adafruit_wm8960.advanced.DAC_VOLUME_MIN, 0.0)
+
         if not self.bypassed and self._mix >= 1.0:
             self._codec.mic_output = False
         else:
             self._codec.mic_output = True
+
+    @property
+    def level(self) -> float:
+        return self._level
+
+    @level.setter
+    def level(self, value:float) -> None:
+        self._level = constrain(value)
+        self._codec.headphone_volume = map_value(self._level, adafruit_wm8960.advanced.AMP_VOLUME_MIN, 0.0)
 
     def update(self) -> None:
         # Switch
@@ -520,7 +539,7 @@ class ZeroStomp(displayio.Group):
 
         # Knobs
         for i in range(self.page_knob_count):
-            self._knobs[i + self._page * NUM_POTS].value = self._knob_pins[i].value / 65535
+            self._knobs[i + self._page * NUM_POTS].value = self.knob_value(i)
 
     @property
     def expression(self) -> float:
