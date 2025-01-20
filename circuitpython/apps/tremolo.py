@@ -13,7 +13,7 @@ import zero_stomp
 
 # Constants
 MIN_SPEED = 0.1
-MAX_SPEED = 4.0
+MAX_SPEED = 8.0
 
 SAMPLE_SIZE = 1024
 SAMPLE_VOLUME = 32767
@@ -42,6 +42,9 @@ mixer = audiomixer.Mixer(
     voice_count=1,
     sample_rate=zero_stomp.SAMPLE_RATE,
     channel_count=zero_stomp.CHANNELS,
+    bits_per_sample=zero_stomp.BITS_PER_SAMPLE,
+    samples_signed=zero_stomp.SAMPLES_SIGNED,
+    buffer_size=zero_stomp.BUFFER_SIZE,
 )
 mixer.voice[0].level = synthio.Math(
     synthio.MathOperation.SCALE_OFFSET,
@@ -62,7 +65,7 @@ mixer.voice[0].level = synthio.Math(
 
 # Audio Chain
 device.i2s.play(mixer)
-mixer.voice[0].play(device.i2s)
+mixer.voice[0].play(device.i2s, loop=True)
 
 # Assign controls
 def set_waveform(index: int):
