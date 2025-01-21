@@ -4,12 +4,11 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiobusio
-import audiomixer
 import synthio
 import ulab.numpy as np
 
 import zero_stomp
+zero_stomp.CURRENT = __file__
 
 # Constants
 MIN_SPEED = 0.1

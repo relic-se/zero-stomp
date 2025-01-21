@@ -13,6 +13,7 @@ import vectorio
 import adafruit_display_text.label
 
 import zero_stomp
+zero_stomp.CURRENT = __file__
 
 LEVEL_ATTACK = 0.01  # begins calculation when relative level is above this value
 LEVEL_RELEASE = 0.002  # ends calculation when relative level is below this value

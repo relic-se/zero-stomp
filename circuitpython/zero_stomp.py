@@ -75,6 +75,7 @@ SWITCH_SHORT_DURATION = 0.4
 
 SCRIPTS = "/apps"
 SETTINGS = "/settings.json"
+CURRENT = ""
 
 # Helper Methods
 
@@ -113,10 +114,14 @@ def get_settings() -> dict:
             _settings = {}
     return _settings
 
-def save_settings() -> None:
+def save_settings() -> bool:
     settings = get_settings()
-    with open(SETTINGS, "w") as file:
-        json.dump(settings, file)
+    try:
+        with open(SETTINGS, "w") as file:
+            json.dump(settings, file)
+    except OSError:
+        return False
+    return True
 
 def get_setting(*path) -> any:
     settings = get_settings()
@@ -141,7 +146,7 @@ _programs = None
 def get_programs() -> tuple:
     global _programs
     if _programs is None:
-        _programs = tuple(filter(lambda filename: filename.endswith(".py"), os.listdir(SCRIPTS)))
+        _programs = tuple(sorted(list(filter(lambda filename: filename.endswith(".py"), os.listdir(SCRIPTS)))))
     return _programs
 
 def get_default_program() -> str:
@@ -149,7 +154,10 @@ def get_default_program() -> str:
     return programs[0] if programs else None
 
 def get_current_program() -> str:
-    program = get_setting("global", "program")
+    program = "/" + CURRENT.lstrip("/")
+    program = program.lstrip(SCRIPTS + "/") if program.startswith(SCRIPTS) else ""
+    if not program or not program in get_programs():
+        program = get_setting("global", "program")
     if not program or not program in get_programs():
         program = get_default_program()
     return program
@@ -168,11 +176,12 @@ def load_program(program: str = None, save: bool = True) -> None:
         raise OSError("Unable to load program")
     if save:
         update_setting(program, "global", "program")
+        save_settings()
     supervisor.set_next_code_file(
-        filename=SCRIPTS + "/" + program,
-        reload_on_success=True,
+        filename=SCRIPTS + "/" + program.lstrip(SCRIPTS + "/"),
+        reload_on_success=False,
         reload_on_error=False,
-        sticky_on_success=True,
+        sticky_on_success=False,
         sticky_on_error=False,
         sticky_on_reload=False,
     )

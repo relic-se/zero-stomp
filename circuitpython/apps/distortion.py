@@ -9,6 +9,7 @@ import audiofilters
 import synthio
 
 import zero_stomp
+zero_stomp.CURRENT = __file__
 
 # Constants
 MIN_PRE_GAIN = -60

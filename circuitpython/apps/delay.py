@@ -4,12 +4,12 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiobusio
 import audiodelays
 import audiofilters
 import synthio
 
 import zero_stomp
+zero_stomp.CURRENT = __file__
 
 # Constants
 TAPE_LENGTH = 100
