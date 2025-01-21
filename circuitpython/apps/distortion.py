@@ -4,7 +4,6 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiobusio
 import audiofilters
 import synthio
 
@@ -29,16 +28,7 @@ device.title = "Distortion"
 device.mix = 1.0
 
 # Audio Objects
-# TODO: Support for I2SInOut in CircuitPython core
-audio_in = audiobusio.I2SIn(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data=zero_stomp.I2S_DIN,
-    channel_count=zero_stomp.CHANNELS,
-    sample_rate=zero_stomp.SAMPLE_RATE,
-)
-
-audio_distortion = audiofilters.Distortion(
+distortion_effect = audiofilters.Distortion(
     drive=synthio.Math(
         synthio.MathOperation.SUM,
         0.0, # Knob
@@ -50,7 +40,7 @@ audio_distortion = audiofilters.Distortion(
     channel_count=zero_stomp.CHANNELS,
 )
 
-audio_filter = audiofilters.Filter(
+filter_effect = audiofilters.Filter(
     filter=(
         # TODO: Swap with shelf when available
         synthio.BlockBiquad(synthio.FilterMode.HIGH_PASS, MIN_FILTER),
@@ -60,34 +50,28 @@ audio_filter = audiofilters.Filter(
     channel_count=zero_stomp.CHANNELS,
 )
 
-audio_out = audiobusio.I2SOut(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data=zero_stomp.I2S_DOUT,
-)
-
 # Audio Chain
-audio_distortion.play(audio_in)
-audio_filter.play(audio_distortion)
-audio_out.play(audio_filter)
+distortion_effect.play(device.i2s)
+filter_effect.play(distortion_effect)
+device.i2s.play(filter_effect)
 
 # Assign controls
 # TODO: Simplify with single "Level" knob
-device.assign_knob("Pre", audio_distortion, "pre_gain", MIN_PRE_GAIN, MAX_PRE_GAIN)
-device.assign_knob("Post", audio_distortion, "post_gain", MIN_POST_GAIN, MAX_POST_GAIN)
-device.assign_knob("Drive", audio_distortion.drive, "a")
+device.assign_knob("Pre", distortion_effect, "pre_gain", MIN_PRE_GAIN, MAX_PRE_GAIN)
+device.assign_knob("Post", distortion_effect, "post_gain", MIN_POST_GAIN, MAX_POST_GAIN)
+device.assign_knob("Drive", distortion_effect.drive, "a")
 
 device.assign_knob("Mix", device, "mix")
-device.assign_knob("Low", audio_filter.filter[0], "frequency", MAX_FILTER, MIN_FILTER)
-device.assign_knob("High", audio_filter.filter[1], "frequency", MIN_FILTER, MAX_FILTER)
+device.assign_knob("Low", filter_effect.filter[0], "frequency", MAX_FILTER, MIN_FILTER)
+device.assign_knob("High", filter_effect.filter[1], "frequency", MIN_FILTER, MAX_FILTER)
 
 device.add_knob(
     title="Mode",
-    value=audio_distortion.mode / (NUM_MODES - 1),
-    callback=lambda value: zero_stomp.set_attribute(audio_distortion, "mode", int(zero_stomp.map_value(value, 0, NUM_MODES - 1))),
+    value=distortion_effect.mode / (NUM_MODES - 1),
+    callback=lambda value: zero_stomp.set_attribute(distortion_effect, "mode", int(zero_stomp.map_value(value, 0, NUM_MODES - 1))),
 )
 
 # Update Loop
 while True:
     device.update()
-    audio_distortion.drive.b = device.expression
+    distortion_effect.drive.b = device.expression

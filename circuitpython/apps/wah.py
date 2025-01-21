@@ -4,7 +4,6 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiobusio
 import audiofilters
 import synthio
 
@@ -27,16 +26,7 @@ device.title = "Wah"
 device.mix = 1.0
 
 # Audio Objects
-# TODO: Support for I2SInOut in CircuitPython core
-audio_in = audiobusio.I2SIn(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data=zero_stomp.I2S_DIN,
-    channel_count=zero_stomp.CHANNELS,
-    sample_rate=zero_stomp.SAMPLE_RATE,
-)
-
-audio_filter = audiofilters.Filter(
+filter_effect = audiofilters.Filter(
     filter=synthio.BlockBiquad(
         synthio.FilterMode.BAND_PASS,
         synthio.Math(
@@ -56,26 +46,20 @@ audio_filter = audiofilters.Filter(
     channel_count=zero_stomp.CHANNELS,
 )
 
-audio_out = audiobusio.I2SOut(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data=zero_stomp.I2S_DOUT,
-)
-
 # Audio Chain
-audio_filter.play(audio_in)
-audio_out.play(audio_filter)
+filter_effect.play(device.i2s)
+device.i2s.play(filter_effect)
 
 # Setup controls
-device.assign_knob("Filter", audio_filter.filter.frequency.c, "a", MIN_FILTER, MAX_FILTER)
-device.assign_knob("Q", audio_filter.filter, "Q", MIN_Q, MAX_Q)
+device.assign_knob("Filter", filter_effect.filter.frequency.c, "a", MIN_FILTER, MAX_FILTER)
+device.assign_knob("Q", filter_effect.filter, "Q", MIN_Q, MAX_Q)
 device.assign_knob("Mix", device, "mix")
 
-device.assign_knob("Speed", audio_filter.filter.frequency.a, "rate", MIN_SPEED, MAX_SPEED)
-device.assign_knob("Depth", audio_filter.filter.frequency.a, "scale")
+device.assign_knob("Speed", filter_effect.filter.frequency.a, "rate", MIN_SPEED, MAX_SPEED)
+device.assign_knob("Depth", filter_effect.filter.frequency.a, "scale")
 
 # Update Loop
 while True:
     device.update()
-    audio_filter.filter.frequency.c.b = device.expression
-    device.led = 0 if device.bypassed else (audio_filter.filter.frequency.a.value + 1) / 4 + 0.5
+    filter_effect.filter.frequency.c.b = device.expression
+    device.led = 0 if device.bypassed else (filter_effect.filter.frequency.a.value + 1) / 4 + 0.5
