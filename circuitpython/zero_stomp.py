@@ -513,8 +513,10 @@ class ZeroStomp(displayio.Group):
     def _update_mix(self) -> None:
         if self._codec.dac_mute != self.bypassed:
             self._codec.dac_mute = self.bypassed
-        self._codec.mic_output_volume = 0.0 if self.bypassed else map_value(1.0 - self._mix, adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
-        self._codec.dac_volume = map_value(self._mix, adafruit_wm8960.advanced.DAC_VOLUME_MIN, 0.0)
+        
+        mix = self._mix * 2.0
+        self._codec.mic_output_volume = 0.0 if self.bypassed else map_value(min(2.0 - mix, 1.0), adafruit_wm8960.advanced.OUTPUT_VOLUME_MIN, 0.0)
+        self._codec.dac_volume = map_value(min(mix, 1.0), adafruit_wm8960.advanced.DAC_VOLUME_MIN, 0.0)
 
         if not self.bypassed and self._mix >= 1.0:
             self._codec.mic_output = False
