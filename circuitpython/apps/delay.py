@@ -20,7 +20,9 @@ MAX_DELAY = 1000
 MAX_EXPRESSION = 500
 
 MIN_SPEED = 0.1
-MAX_SPEED = 4.0
+MAX_SPEED = 10.0
+
+MAX_SCALE = 0.25
 
 MIN_FILTER = 100
 MAX_FILTER = 20000
@@ -46,10 +48,13 @@ delay_effect = audiodelays.Echo(
         delay_ms
     ),
     mix=1.0,
+    freq_shift=True,
+    
     sample_rate=zero_stomp.SAMPLE_RATE,
     channel_count=zero_stomp.CHANNELS,
     buffer_size=zero_stomp.BUFFER_SIZE,
-    freq_shift=True,
+    samples_signed=zero_stomp.SAMPLES_SIGNED,
+    bits_per_sample=zero_stomp.BITS_PER_SAMPLE,
 )
 
 # Assign controls
@@ -58,7 +63,7 @@ device.assign_knob("Regen", delay_effect, "decay")
 device.assign_knob("Delay", delay_ms, "c", MIN_DELAY, MAX_DELAY)
 
 device.assign_knob("Speed", delay_effect.delay_ms.a, "rate", MIN_SPEED, MAX_SPEED)
-device.assign_knob("Width", delay_effect.delay_ms.a, "scale")
+device.assign_knob("Width", delay_effect.delay_ms.a, "scale", 0.0, MAX_SCALE)
 
 if FILTER:
     filter_effect = audiofilters.Filter(
@@ -77,7 +82,7 @@ if FILTER:
 else:
     # Audio Chain
     device.i2s.play(delay_effect)
-    delay_effect.play(device.i2s, loop=True)
+    delay_effect.play(device.i2s)
 
 # Update Loop
 while True:
