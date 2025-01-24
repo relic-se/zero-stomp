@@ -1,3 +1,6 @@
 [submodule "hardware/libraries/RP2040-Zero-KiCAD"]
 	path = hardware/libraries/RP2040-Zero-KiCAD
 	url = https://github.com/dj505/RP2040-Zero-KiCAD.git
+[submodule "arduino"]
+	path = arduino
+	url = https://github.com/relic-se/zero-stomp-arduino.git
