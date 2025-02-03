@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "Zero-Stomp")(type "KiCad")(uri "${KIPRJMOD}/libraries/Zero-Stomp/Zero-Stomp.kicad_sym")(options "")(descr ""))
   (lib (name "RP2040-Zero")(type "KiCad")(uri "${KIPRJMOD}/libraries/RP2040-Zero-KiCAD/RP2040-Zero.kicad_sym")(options "")(descr ""))
+  (lib (name "RP2350A")(type "KiCad")(uri "${KIPRJMOD}/libraries/rp2350/rp2350a-qfn60.kicad_sym")(options "")(descr ""))
 )

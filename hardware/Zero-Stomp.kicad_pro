@@ -711,6 +711,10 @@
     [
       "8c8d5801-9c58-4283-98ac-c6a8e7250e15",
       "Root"
+    ],
+    [
+      "18032a8d-c86f-4e94-b2bf-e3bf4b84450f",
+      "MCU"
     ]
   ],
   "text_variables": {}

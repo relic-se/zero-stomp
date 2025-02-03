@@ -4,3 +4,6 @@
 [submodule "arduino"]
 	path = arduino
 	url = https://github.com/relic-se/zero-stomp-arduino.git
+[submodule "hardware/libraries/rp2350"]
+	path = hardware/libraries/rp2350
+	url = https://github.com/HDR/RP2350_KiCad.git
