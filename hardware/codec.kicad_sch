@@ -630,7 +630,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:C_Polarized_Small"
+		(symbol "Device:C_Small"
 			(pin_numbers
 				(hide yes)
 			)
@@ -650,7 +650,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "C_Polarized_Small"
+			(property "Value" "C_Small"
 				(at 0.254 -2.032 0)
 				(effects
 					(font
@@ -677,7 +677,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Polarized capacitor, small symbol"
+			(property "Description" "Unpolarized capacitor, small symbol"
 				(at 0 0 0)
 				(effects
 					(font
@@ -686,7 +686,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "cap capacitor"
+			(property "ki_keywords" "capacitor cap"
 				(at 0 0 0)
 				(effects
 					(font
@@ -695,7 +695,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "CP_*"
+			(property "ki_fp_filters" "C_*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -704,35 +704,13 @@
 					(hide yes)
 				)
 			)
-			(symbol "C_Polarized_Small_0_1"
-				(rectangle
-					(start -1.524 0.6858)
-					(end 1.524 0.3048)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.524 -0.3048)
-					(end 1.524 -0.6858)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
+			(symbol "C_Small_0_1"
 				(polyline
 					(pts
-						(xy -1.27 1.524) (xy -0.762 1.524)
+						(xy -1.524 0.508) (xy 1.524 0.508)
 					)
 					(stroke
-						(width 0)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -741,10 +719,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.016 1.27) (xy -1.016 1.778)
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0)
+						(width 0.3302)
 						(type default)
 					)
 					(fill
@@ -752,10 +730,10 @@
 					)
 				)
 			)
-			(symbol "C_Polarized_Small_1_1"
+			(symbol "C_Small_1_1"
 				(pin passive line
 					(at 0 2.54 270)
-					(length 1.8542)
+					(length 2.032)
 					(name "~"
 						(effects
 							(font
@@ -773,7 +751,7 @@
 				)
 				(pin passive line
 					(at 0 -2.54 90)
-					(length 1.8542)
+					(length 2.032)
 					(name "~"
 						(effects
 							(font
@@ -4601,6 +4579,76 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 162.56 53.34 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0d9bdd02-1f7c-4c85-a735-8a709fee13c6")
+		(property "Reference" "C34"
+			(at 166.37 52.0699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "0u1"
+			(at 166.37 54.6099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 161.5948 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 162.56 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 162.56 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e6b76f46-d08b-4870-8a04-5a21edb12047")
+		)
+		(pin "2"
+			(uuid "925a12a0-2e52-4e04-afba-c72d976217b8")
+		)
+		(instances
+			(project "Zero-Stomp"
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
+					(reference "C34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 33.02 41.91 0)
 		(mirror y)
 		(unit 1)
@@ -4627,7 +4675,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 32.0548 45.72 0)
 			(effects
 				(font
@@ -4694,7 +4742,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 111.76 86.868 90)
 			(effects
 				(font
@@ -4761,7 +4809,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 111.76 97.028 90)
 			(effects
 				(font
@@ -4830,7 +4878,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
 			(at 105.41 80.01 0)
 			(effects
 				(font
@@ -4896,7 +4944,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 103.632 72.39 90)
 			(effects
 				(font
@@ -5030,7 +5078,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 64.4652 45.72 0)
 			(effects
 				(font
@@ -5164,7 +5212,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_4x5.4"
 			(at 106.3752 54.61 0)
 			(effects
 				(font
@@ -5234,7 +5282,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_4x5.4"
 			(at 184.4548 57.15 0)
 			(effects
 				(font
@@ -5304,7 +5352,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_4x5.4"
 			(at 206.0448 57.15 0)
 			(effects
 				(font
@@ -5372,7 +5420,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 173.99 92.71 0)
 			(effects
 				(font
@@ -5480,6 +5528,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 195.58 53.34 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4efd30a0-42a0-4922-932b-bec2caa06c96")
+		(property "Reference" "C38"
+			(at 199.39 52.0699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "0u1"
+			(at 199.39 54.6099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 194.6148 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 195.58 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 195.58 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5708b427-8fde-4363-9198-e659fdff5616")
+		)
+		(pin "2"
+			(uuid "2724607c-c825-4944-8f7e-76df856b8e2e")
+		)
+		(instances
+			(project "Zero-Stomp"
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
+					(reference "C38")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 111.76 90.17 90)
 		(unit 1)
@@ -5504,7 +5622,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 111.76 91.948 90)
 			(effects
 				(font
@@ -5547,75 +5665,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 95.25 50.8 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "55fd1a55-d32a-40b6-ab45-79fbf956cf44")
-		(property "Reference" "C29"
-			(at 91.44 48.6409 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "0u1"
-			(at 91.44 51.1809 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 96.2152 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 95.25 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 95.25 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0db51070-71c0-4db4-9470-cafb09f26a16")
-		)
-		(pin "2"
-			(uuid "63d47ebc-0fb6-4038-b522-74b2f16d72fd")
-		)
-		(instances
-			(project "Zero-Stomp"
-				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
-					(reference "C29")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 101.6 72.39 0)
 		(mirror y)
@@ -5643,7 +5692,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 103.378 72.39 90)
 			(effects
 				(font
@@ -5712,7 +5761,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
 			(at 187.96 80.01 0)
 			(effects
 				(font
@@ -5761,6 +5810,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 166.37 90.17 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6512578b-f4dd-44b6-953c-aa51e4f729c6")
+		(property "Reference" "C35"
+			(at 163.322 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0u1"
+			(at 169.672 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 166.37 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 166.37 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 166.37 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "110e668e-a759-41ae-8a74-c4884521a5e9")
+		)
+		(pin "1"
+			(uuid "98b635b4-66e6-459c-8e32-a98238266738")
+		)
+		(instances
+			(project ""
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
+					(reference "C35")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 119.38 100.33 90)
 		(unit 1)
@@ -5788,7 +5904,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
 			(at 119.38 95.25 0)
 			(effects
 				(font
@@ -5855,7 +5971,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.4"
 			(at 173.0248 57.15 0)
 			(effects
 				(font
@@ -6022,76 +6138,6 @@
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
 					(reference "#PWR064")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 195.58 53.34 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "83977d73-ce75-485d-b6aa-a59b6feb7a37")
-		(property "Reference" "C38"
-			(at 199.39 51.1809 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "0u1"
-			(at 199.39 53.7209 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 194.6148 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 195.58 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 195.58 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8cefbf60-9c6c-4ded-a340-e6757276e0fe")
-		)
-		(pin "2"
-			(uuid "5d0a89e7-5130-40c1-a034-a8bd69a9abab")
-		)
-		(instances
-			(project "Zero-Stomp"
-				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
-					(reference "C38")
 					(unit 1)
 				)
 			)
@@ -6677,6 +6723,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 95.25 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a56e5504-1e87-4ddd-84da-1f800bcf8703")
+		(property "Reference" "C29"
+			(at 91.44 49.5299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "0u1"
+			(at 91.44 52.0699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 96.2152 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 95.25 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 95.25 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1bfea0a5-1a3b-4c0e-bd63-2485ad41becb")
+		)
+		(pin "2"
+			(uuid "48c3c191-b615-426e-b9a6-3e4ae6cf5ef0")
+		)
+		(instances
+			(project ""
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
+					(reference "C29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDA")
 		(at 139.7 143.51 0)
 		(unit 1)
@@ -6896,7 +7011,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 111.76 89.408 90)
 			(effects
 				(font
@@ -7004,6 +7119,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 217.17 53.34 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bcba235e-9f1b-4da4-9a41-b689dd42116a")
+		(property "Reference" "C40"
+			(at 220.98 52.0699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "0u1"
+			(at 220.98 54.6099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 216.2048 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 217.17 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 217.17 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fb2f3eb3-01ab-4413-b0e3-194f884226b3")
+		)
+		(pin "2"
+			(uuid "4b6ee652-23a6-49b2-9c0b-7d5fc8a028ba")
+		)
+		(instances
+			(project "Zero-Stomp"
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
+					(reference "C40")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDA")
 		(at 217.17 60.96 0)
 		(unit 1)
@@ -7069,32 +7254,34 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 166.37 90.17 90)
+		(lib_id "Device:C")
+		(at 116.84 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cf76905a-c94b-4539-b4d0-570aae80b954")
-		(property "Reference" "C35"
-			(at 162.814 88.9 90)
+		(uuid "d0d2c02c-815d-4eec-9e39-181698d8dbba")
+		(property "Reference" "C31"
+			(at 113.03 49.5299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "0.1u"
-			(at 170.18 88.9 90)
+		(property "Value" "0u1"
+			(at 113.03 52.0699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Footprint" ""
-			(at 166.37 90.17 0)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 117.8052 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7103,7 +7290,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 166.37 90.17 0)
+			(at 116.84 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7111,8 +7298,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 166.37 90.17 0)
+		(property "Description" "Unpolarized capacitor"
+			(at 116.84 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7121,15 +7308,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "590f694a-a27a-4ae3-8320-ebfea76f1d35")
+			(uuid "52e630ba-97ee-4069-bdab-4e3ae0b33c73")
 		)
 		(pin "2"
-			(uuid "f179c92f-389e-4a16-9d15-d46ba182c432")
+			(uuid "b635148e-efbc-4eed-ad15-d5214d6bf16f")
 		)
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
-					(reference "C35")
+					(reference "C31")
 					(unit 1)
 				)
 			)
@@ -7162,7 +7349,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 64.4652 81.28 0)
 			(effects
 				(font
@@ -7231,7 +7418,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_4x5.4"
 			(at 127.9652 54.61 0)
 			(effects
 				(font
@@ -7301,7 +7488,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 32.0548 81.28 0)
 			(effects
 				(font
@@ -7368,7 +7555,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 111.76 94.488 90)
 			(effects
 				(font
@@ -7405,76 +7592,6 @@
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
 					(reference "R35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 217.17 53.34 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e5324065-8b7f-4048-8be4-4048a7e089d6")
-		(property "Reference" "C40"
-			(at 220.98 51.1809 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "0u1"
-			(at 220.98 53.7209 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 216.2048 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 217.17 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 217.17 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "32dcf119-57c3-4fa5-a422-9f6be64a744d")
-		)
-		(pin "2"
-			(uuid "3b14bd87-fa1f-4284-94bb-006a16c6d0b8")
-		)
-		(instances
-			(project "Zero-Stomp"
-				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
-					(reference "C40")
 					(unit 1)
 				)
 			)
@@ -7613,76 +7730,6 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized")
-		(at 162.56 53.34 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ef654b85-74ce-4a86-bd6f-6c3daa4eb9af")
-		(property "Reference" "C34"
-			(at 166.37 51.1809 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "0u1"
-			(at 166.37 53.7209 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 161.5948 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 162.56 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 162.56 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fd61315b-252d-4e8f-9db4-8bbf8cff8c97")
-		)
-		(pin "2"
-			(uuid "0dd5c2d0-e803-4315-8cb7-e4f9a5045818")
-		)
-		(instances
-			(project "Zero-Stomp"
-				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
-					(reference "C34")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
 		(at 152.4 53.34 0)
 		(mirror y)
 		(unit 1)
@@ -7709,7 +7756,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_4x5.4"
 			(at 151.4348 57.15 0)
 			(effects
 				(font
@@ -7876,75 +7923,6 @@
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
 					(reference "#PWR076")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 116.84 50.8 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ffebb151-4fde-402c-9b93-756f4a48ab29")
-		(property "Reference" "C31"
-			(at 113.03 48.6409 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "0u1"
-			(at 113.03 51.1809 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 117.8052 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 116.84 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 116.84 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "beb06152-9a2c-49dc-b94c-bd966463a24b")
-		)
-		(pin "2"
-			(uuid "76cc83af-3a42-451a-b58b-d679e231abed")
-		)
-		(instances
-			(project "Zero-Stomp"
-				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/99222d0b-8c34-4910-99fb-15750ad3fd36"
-					(reference "C31")
 					(unit 1)
 				)
 			)
