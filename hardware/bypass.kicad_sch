@@ -1847,7 +1847,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "14171c2b-e209-49ac-a175-cbbf5b11f650")
-		(property "Reference" "R65"
+		(property "Reference" "R71"
 			(at 99.06 104.14 90)
 			(effects
 				(font
@@ -1899,7 +1899,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/5979a6af-2ef4-4435-a66c-af668b515c08"
-					(reference "R65")
+					(reference "R71")
 					(unit 1)
 				)
 			)

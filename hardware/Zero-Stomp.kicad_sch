@@ -2085,167 +2085,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:C_Polarized"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.635 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C_Polarized"
-				(at 0.635 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0.9652 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Polarized capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "cap capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "CP_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C_Polarized_0_1"
-				(rectangle
-					(start -2.286 0.508)
-					(end 2.286 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 2.286) (xy -0.762 2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 2.794) (xy -1.27 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 2.286 -0.508)
-					(end -2.286 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-			)
-			(symbol "C_Polarized_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:LED"
 			(pin_numbers
 				(hide yes)
@@ -6053,7 +5892,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0548c823-10b7-498e-ae8b-9ef531e91001")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR05"
 			(at 45.72 121.92 0)
 			(effects
 				(font
@@ -6103,7 +5942,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR09")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -6119,7 +5958,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "058efd81-23ee-4115-aa4f-32954edd2a7e")
-		(property "Reference" "R68"
+		(property "Reference" "R3"
 			(at 68.58 27.94 0)
 			(effects
 				(font
@@ -6137,7 +5976,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 69.85 29.21 0)
 			(effects
 				(font
@@ -6173,7 +6012,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R68")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -6190,7 +6029,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09241e65-aad1-45c6-a10b-302ae48910fe")
-		(property "Reference" "J17"
+		(property "Reference" "J11"
 			(at 135.89 30.48 0)
 			(effects
 				(font
@@ -6245,7 +6084,7 @@
 		(instances
 			(project ""
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J17")
+					(reference "J11")
 					(unit 1)
 				)
 			)
@@ -6260,7 +6099,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0cbcdd45-2564-482d-b78e-1aefef7be0a4")
-		(property "Reference" "R5"
+		(property "Reference" "R11"
 			(at 170.18 87.63 90)
 			(effects
 				(font
@@ -6312,7 +6151,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R5")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -6657,7 +6496,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1dbf609e-97f9-43f7-ab81-9af45195faac")
-		(property "Reference" "R4"
+		(property "Reference" "R10"
 			(at 170.18 85.09 90)
 			(effects
 				(font
@@ -6709,7 +6548,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R4")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -6725,7 +6564,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "22dbe707-b1dc-4982-83ec-b9ea6a052f96")
-		(property "Reference" "R70"
+		(property "Reference" "R2"
 			(at 31.75 50.8 0)
 			(effects
 				(font
@@ -6743,7 +6582,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 33.02 52.07 0)
 			(effects
 				(font
@@ -6779,7 +6618,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R70")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -6794,7 +6633,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "27947c9f-113d-4800-8fa7-d32f941070f9")
-		(property "Reference" "R1"
+		(property "Reference" "R7"
 			(at 144.78 30.48 0)
 			(effects
 				(font
@@ -6812,7 +6651,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 143.51 31.75 0)
 			(effects
 				(font
@@ -6848,7 +6687,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R1")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -6929,7 +6768,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "341783b6-eb85-4a8e-b90b-e7a5827a30f4")
-		(property "Reference" "J4"
+		(property "Reference" "J2"
 			(at 38.735 166.37 0)
 			(effects
 				(font
@@ -6984,7 +6823,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J4")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -6999,7 +6838,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3e517cf9-51d5-44a3-bff6-c2de9d4f4009")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR014"
 			(at 82.55 147.32 0)
 			(effects
 				(font
@@ -7049,7 +6888,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR018")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -7134,7 +6973,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "40ee7162-8786-40b6-a551-d5638f29ab30")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR015"
 			(at 82.55 168.91 0)
 			(effects
 				(font
@@ -7184,7 +7023,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR019")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -7199,7 +7038,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "41e4e21e-1b75-4bee-b436-ae15cd015f76")
-		(property "Reference" "R8"
+		(property "Reference" "R14"
 			(at 170.18 100.33 90)
 			(effects
 				(font
@@ -7251,7 +7090,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R8")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -7410,7 +7249,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4c272410-ab37-4006-b21f-c6bcba4315ec")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR09"
 			(at 66.04 87.63 0)
 			(effects
 				(font
@@ -7460,7 +7299,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR017")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -7476,7 +7315,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5179876c-1443-4eb1-a870-27fedea50851")
-		(property "Reference" "J8"
+		(property "Reference" "J10"
 			(at 119.38 48.2599 0)
 			(effects
 				(font
@@ -7533,7 +7372,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J8")
+					(reference "J10")
 					(unit 1)
 				)
 			)
@@ -7615,7 +7454,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "54cd4919-c83b-4bd2-9fb7-df9ae29dab24")
-		(property "Reference" "R7"
+		(property "Reference" "R13"
 			(at 170.18 97.79 90)
 			(effects
 				(font
@@ -7667,7 +7506,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R7")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -7683,7 +7522,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "56620190-2e12-4d5f-b0e2-96d46b1d330a")
-		(property "Reference" "R67"
+		(property "Reference" "R6"
 			(at 105.41 50.8 0)
 			(effects
 				(font
@@ -7701,7 +7540,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 106.68 52.07 0)
 			(effects
 				(font
@@ -7737,7 +7576,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R67")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -7817,7 +7656,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "60114418-bb69-4e4a-86fa-101b5f33618c")
-		(property "Reference" "J2"
+		(property "Reference" "J4"
 			(at 45.72 48.2599 0)
 			(effects
 				(font
@@ -7874,7 +7713,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J2")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -7954,76 +7793,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 66.04 77.47 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6a6592ab-f4d5-4c76-86c8-1eb3f6d99009")
-		(property "Reference" "C1"
-			(at 69.85 75.3109 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1u"
-			(at 69.85 77.8509 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 65.0748 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 66.04 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 66.04 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "66eb3b70-9311-4eb5-8937-ceb9d97402d2")
-		)
-		(pin "2"
-			(uuid "b9de0d09-d67f-4b48-bcc0-6a5e362dace9")
-		)
-		(instances
-			(project "Zero-Stomp"
-				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 194.31 109.22 0)
 		(unit 1)
@@ -8032,7 +7801,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6e548e8e-1631-458e-a2a9-9a3f439bfd21")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR027"
 			(at 194.31 115.57 0)
 			(effects
 				(font
@@ -8082,7 +7851,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR028")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -8098,7 +7867,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6eb41cd3-1b37-4410-823d-a405925c9960")
-		(property "Reference" "J7"
+		(property "Reference" "J9"
 			(at 119.38 25.3999 0)
 			(effects
 				(font
@@ -8155,7 +7924,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J7")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -8170,7 +7939,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6fc58706-1479-482d-ad17-c0583b3ea079")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR029"
 			(at 214.63 135.89 0)
 			(effects
 				(font
@@ -8220,7 +7989,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR030")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -8235,7 +8004,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7378688e-6c32-4776-a46d-3ac8cc84e35a")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR017"
 			(at 109.22 38.1 0)
 			(effects
 				(font
@@ -8285,7 +8054,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR014")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -8300,7 +8069,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "73ca6af9-1135-402b-8938-71b464bc4b61")
-		(property "Reference" "J9"
+		(property "Reference" "J7"
 			(at 92.075 144.78 0)
 			(effects
 				(font
@@ -8355,7 +8124,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J9")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -8371,7 +8140,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7b103720-86de-4ec6-8f88-68a482eb20aa")
-		(property "Reference" "R71"
+		(property "Reference" "R1"
 			(at 31.75 27.94 0)
 			(effects
 				(font
@@ -8389,7 +8158,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 33.02 29.21 0)
 			(effects
 				(font
@@ -8425,7 +8194,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R71")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -8441,7 +8210,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7c4ed47b-ea6b-4665-a084-aec0914ab003")
-		(property "Reference" "J1"
+		(property "Reference" "J3"
 			(at 45.72 25.3999 0)
 			(effects
 				(font
@@ -8498,7 +8267,77 @@
 		(instances
 			(project ""
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J1")
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 66.04 77.47 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7d08dbd0-5806-4f77-a979-90f17afb8586")
+		(property "Reference" "C1"
+			(at 69.85 76.1999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 69.85 78.7399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_01005_0402Metric"
+			(at 67.0052 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 66.04 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 66.04 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "bece31ee-8b94-4ada-9525-ad1d86c192af")
+		)
+		(pin "1"
+			(uuid "f3f2b30d-1fe6-4db9-9ce3-8c5147bc4aae")
+		)
+		(instances
+			(project ""
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -8513,7 +8352,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7d82e4e6-573c-41f1-ace1-e0506855495c")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR07"
 			(at 48.26 168.91 0)
 			(effects
 				(font
@@ -8563,7 +8402,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR011")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -8579,7 +8418,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7f1e2040-98a5-4ac1-a2c0-95911640035d")
-		(property "Reference" "R11"
+		(property "Reference" "R17"
 			(at 226.06 40.64 0)
 			(effects
 				(font
@@ -8597,7 +8436,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 226.568 41.91 90)
 			(effects
 				(font
@@ -8633,7 +8472,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R11")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -8915,7 +8754,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "93cf939d-9534-4a0e-afc6-c51334a6caf7")
-		(property "Reference" "R66"
+		(property "Reference" "R5"
 			(at 105.41 27.94 0)
 			(effects
 				(font
@@ -8933,7 +8772,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 106.68 29.21 0)
 			(effects
 				(font
@@ -8969,7 +8808,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R66")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -9052,7 +8891,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "95eab522-ff99-4a8c-bbeb-49e4b950ae72")
-		(property "Reference" "J3"
+		(property "Reference" "J1"
 			(at 38.735 144.78 0)
 			(effects
 				(font
@@ -9107,7 +8946,7 @@
 		(instances
 			(project ""
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J3")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -9201,7 +9040,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9b7c6bc3-55d4-48c5-a356-a47fb0ae7965")
-		(property "Reference" "R3"
+		(property "Reference" "R9"
 			(at 170.18 82.55 90)
 			(effects
 				(font
@@ -9253,7 +9092,7 @@
 		(instances
 			(project ""
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R3")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -9466,7 +9305,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a001bf3f-d7d6-424b-a54d-2ac3d73af0b0")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR019"
 			(at 109.22 60.96 0)
 			(effects
 				(font
@@ -9516,7 +9355,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR016")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -9645,7 +9484,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "acad5039-7ec9-427b-a185-42548c761875")
-		(property "Reference" "R69"
+		(property "Reference" "R4"
 			(at 68.58 50.8 0)
 			(effects
 				(font
@@ -9663,7 +9502,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 69.85 52.07 0)
 			(effects
 				(font
@@ -9699,7 +9538,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R69")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -9714,7 +9553,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ad232cc3-954a-43f3-937e-6133b92b066b")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR031"
 			(at 224.79 59.69 0)
 			(effects
 				(font
@@ -9764,7 +9603,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR029")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -9843,7 +9682,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b63693af-27ff-4f03-9c9c-3109ef928953")
-		(property "Reference" "R9"
+		(property "Reference" "R15"
 			(at 170.18 102.87 90)
 			(effects
 				(font
@@ -9895,7 +9734,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R9")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -9910,7 +9749,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b64a34f3-e33a-4499-a5ba-9b3552c1e13b")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR011"
 			(at 72.39 38.1 0)
 			(effects
 				(font
@@ -9960,7 +9799,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR06")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -10058,7 +9897,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bc172510-efd6-4beb-8044-8f844b42a21f")
-		(property "Reference" "R2"
+		(property "Reference" "R8"
 			(at 147.32 38.1 0)
 			(effects
 				(font
@@ -10076,7 +9915,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 146.05 39.37 0)
 			(effects
 				(font
@@ -10112,7 +9951,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R2")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -10286,7 +10125,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c09df507-3040-4285-a111-1d67cadcd54a")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR010"
 			(at 72.39 25.4 0)
 			(effects
 				(font
@@ -10336,7 +10175,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR05")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -10351,7 +10190,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c467cd68-1066-4e4a-9bda-9aed799992ef")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR016"
 			(at 109.22 25.4 0)
 			(effects
 				(font
@@ -10401,7 +10240,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR013")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -10480,7 +10319,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c798ec95-324a-4fd7-baf1-744e97d3d158")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR013"
 			(at 72.39 60.96 0)
 			(effects
 				(font
@@ -10530,7 +10369,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR08")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -10618,7 +10457,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c86bfded-156a-4091-8834-f2297e2d9089")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR030"
 			(at 214.63 158.75 0)
 			(effects
 				(font
@@ -10668,7 +10507,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR031")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -10749,7 +10588,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d397e510-75cc-4f7c-93e2-5c4602bc2c09")
-		(property "Reference" "R10"
+		(property "Reference" "R16"
 			(at 210.82 40.64 0)
 			(effects
 				(font
@@ -10767,7 +10606,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 211.328 41.91 90)
 			(effects
 				(font
@@ -10803,7 +10642,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R10")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -11026,7 +10865,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "df96a3df-f24d-4d29-8811-ad02efc7ca9f")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR018"
 			(at 109.22 48.26 0)
 			(effects
 				(font
@@ -11076,7 +10915,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR015")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -11091,7 +10930,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "eabf6fdd-e6aa-4cfc-92ad-269abc096052")
-		(property "Reference" "R6"
+		(property "Reference" "R12"
 			(at 170.18 92.71 90)
 			(effects
 				(font
@@ -11143,7 +10982,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R6")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -11225,7 +11064,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ecc5f28c-09aa-41c3-b897-94c373eea4e2")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR028"
 			(at 209.55 59.69 0)
 			(effects
 				(font
@@ -11275,7 +11114,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR027")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -11290,7 +11129,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ee444c09-3295-49a0-98eb-7c9fbe341770")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR06"
 			(at 48.26 147.32 0)
 			(effects
 				(font
@@ -11340,7 +11179,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR010")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -11355,7 +11194,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "efa1e1ed-55fe-4cb7-834d-1b1f91b7cd8b")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR08"
 			(at 49.53 72.39 0)
 			(effects
 				(font
@@ -11405,7 +11244,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR012")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -11421,7 +11260,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f3b6f593-8b0f-48dc-b6a9-2d4c8337d8c2")
-		(property "Reference" "R12"
+		(property "Reference" "R18"
 			(at 241.3 40.64 0)
 			(effects
 				(font
@@ -11439,7 +11278,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 241.808 41.91 90)
 			(effects
 				(font
@@ -11475,7 +11314,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "R12")
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -11490,7 +11329,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f45770a4-d376-4cde-8e91-d5466990ac8a")
-		(property "Reference" "J10"
+		(property "Reference" "J8"
 			(at 92.075 166.37 0)
 			(effects
 				(font
@@ -11545,7 +11384,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "J10")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -11560,7 +11399,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fc40978e-fd3c-44d4-8aa1-7f96213c0b8d")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR012"
 			(at 72.39 48.26 0)
 			(effects
 				(font
@@ -11610,7 +11449,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15"
-					(reference "#PWR07")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)

@@ -3967,7 +3967,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0416f6f4-658b-437f-b5ad-b7aeec5ca9cd")
-		(property "Reference" "R41"
+		(property "Reference" "R47"
 			(at 54.61 143.5099 0)
 			(effects
 				(font
@@ -3985,7 +3985,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 58.928 144.78 90)
 			(effects
 				(font
@@ -4021,7 +4021,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R41")
+					(reference "R47")
 					(unit 1)
 				)
 			)
@@ -4037,7 +4037,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "044951b7-2398-414c-89cd-b28d54ebdcc4")
-		(property "Reference" "R49"
+		(property "Reference" "R55"
 			(at 185.42 147.3199 0)
 			(effects
 				(font
@@ -4055,7 +4055,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 189.738 148.59 90)
 			(effects
 				(font
@@ -4091,7 +4091,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R49")
+					(reference "R55")
 					(unit 1)
 				)
 			)
@@ -4107,7 +4107,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "07a75ac6-289e-48cd-b300-196638acc863")
-		(property "Reference" "R37"
+		(property "Reference" "R43"
 			(at 53.34 179.0699 0)
 			(effects
 				(font
@@ -4161,7 +4161,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R37")
+					(reference "R43")
 					(unit 1)
 				)
 			)
@@ -4177,7 +4177,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0d833fae-2eed-4195-8140-22d0597b6577")
-		(property "Reference" "R47"
+		(property "Reference" "R53"
 			(at 185.42 95.2499 0)
 			(effects
 				(font
@@ -4195,7 +4195,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 189.738 96.52 90)
 			(effects
 				(font
@@ -4231,7 +4231,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R47")
+					(reference "R53")
 					(unit 1)
 				)
 			)
@@ -4246,7 +4246,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "140bae8a-cedd-4e7d-bbd7-80eeaabab341")
-		(property "Reference" "R50"
+		(property "Reference" "R56"
 			(at 218.44 62.23 90)
 			(effects
 				(font
@@ -4298,7 +4298,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R50")
+					(reference "R56")
 					(unit 1)
 				)
 			)
@@ -4329,7 +4329,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 185.42 114.6048 0)
 			(effects
 				(font
@@ -4396,7 +4396,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 54.61 137.4648 0)
 			(effects
 				(font
@@ -4529,7 +4529,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_THT:L_Axial_L6.6mm_D2.7mm_P2.54mm_Vertical_Vishay_IM-2"
+		(property "Footprint" ""
 			(at 250.19 144.78 0)
 			(effects
 				(font
@@ -4661,7 +4661,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 91.44 62.5348 0)
 			(effects
 				(font
@@ -4801,7 +4801,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 94.9452 73.66 0)
 			(effects
 				(font
@@ -4852,7 +4852,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2730d3ea-4833-492c-94ef-3788f64ff39e")
-		(property "Reference" "R51"
+		(property "Reference" "R57"
 			(at 218.44 87.63 90)
 			(effects
 				(font
@@ -4904,7 +4904,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R51")
+					(reference "R57")
 					(unit 1)
 				)
 			)
@@ -4935,7 +4935,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 91.44 87.9348 0)
 			(effects
 				(font
@@ -5002,7 +5002,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 54.61 110.7948 0)
 			(effects
 				(font
@@ -5173,7 +5173,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 232.41 91.7448 0)
 			(effects
 				(font
@@ -5328,7 +5328,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3f19e55e-3d3b-437e-90c6-444ecde01b7b")
-		(property "Reference" "R35"
+		(property "Reference" "R41"
 			(at 40.64 133.35 90)
 			(effects
 				(font
@@ -5380,7 +5380,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R35")
+					(reference "R41")
 					(unit 1)
 				)
 			)
@@ -5414,7 +5414,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 94.9452 124.46 0)
 			(effects
 				(font
@@ -6039,7 +6039,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "52d2deae-4969-44bd-bfcd-5703a0dffa2e")
-		(property "Reference" "R32"
+		(property "Reference" "R38"
 			(at 40.64 55.88 90)
 			(effects
 				(font
@@ -6091,7 +6091,7 @@
 		(instances
 			(project ""
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R32")
+					(reference "R38")
 					(unit 1)
 				)
 			)
@@ -6122,7 +6122,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 185.42 63.8048 0)
 			(effects
 				(font
@@ -6262,7 +6262,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 94.9452 99.06 0)
 			(effects
 				(font
@@ -6379,7 +6379,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "59c48443-559a-4a70-b4aa-31639ca1e9b6")
-		(property "Reference" "R36"
+		(property "Reference" "R42"
 			(at 49.53 166.37 90)
 			(effects
 				(font
@@ -6431,7 +6431,7 @@
 		(instances
 			(project ""
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R36")
+					(reference "R42")
 					(unit 1)
 				)
 			)
@@ -6671,7 +6671,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_THT:L_Axial_L6.6mm_D2.7mm_P2.54mm_Vertical_Vishay_IM-2"
+		(property "Footprint" ""
 			(at 250.19 67.31 0)
 			(effects
 				(font
@@ -6739,7 +6739,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_THT:L_Axial_L6.6mm_D2.7mm_P2.54mm_Vertical_Vishay_IM-2"
+		(property "Footprint" ""
 			(at 250.19 118.11 0)
 			(effects
 				(font
@@ -6871,7 +6871,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 232.41 143.8148 0)
 			(effects
 				(font
@@ -6987,7 +6987,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "88fddc04-6789-4dcf-a638-6bb06b5ba5d9")
-		(property "Reference" "R34"
+		(property "Reference" "R40"
 			(at 40.64 106.68 90)
 			(effects
 				(font
@@ -7039,7 +7039,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R34")
+					(reference "R40")
 					(unit 1)
 				)
 			)
@@ -7213,7 +7213,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 91.44 113.3348 0)
 			(effects
 				(font
@@ -7280,7 +7280,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 91.44 140.0048 0)
 			(effects
 				(font
@@ -7401,7 +7401,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8e2732c7-fdce-48f9-b40c-be7da881297f")
-		(property "Reference" "R53"
+		(property "Reference" "R59"
 			(at 218.44 139.7 90)
 			(effects
 				(font
@@ -7453,7 +7453,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R53")
+					(reference "R59")
 					(unit 1)
 				)
 			)
@@ -7468,7 +7468,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8e4a72ae-f891-4c42-812f-cc3bdb615340")
-		(property "Reference" "R43"
+		(property "Reference" "R49"
 			(at 100.33 83.82 90)
 			(effects
 				(font
@@ -7484,7 +7484,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 100.33 90.678 90)
 			(effects
 				(font
@@ -7520,7 +7520,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R43")
+					(reference "R49")
 					(unit 1)
 				)
 			)
@@ -7616,7 +7616,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 185.42 89.2048 0)
 			(effects
 				(font
@@ -7790,7 +7790,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 94.9452 151.13 0)
 			(effects
 				(font
@@ -7857,7 +7857,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 54.61 85.3948 0)
 			(effects
 				(font
@@ -7973,7 +7973,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a1f59543-e25c-4b85-8e70-fa415a2bab4d")
-		(property "Reference" "R56"
+		(property "Reference" "R62"
 			(at 237.49 123.1899 0)
 			(effects
 				(font
@@ -7991,7 +7991,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 233.172 124.46 90)
 			(effects
 				(font
@@ -8027,7 +8027,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R56")
+					(reference "R62")
 					(unit 1)
 				)
 			)
@@ -8042,7 +8042,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aa6932e7-d767-4fd1-b90b-c79d735ce543")
-		(property "Reference" "R42"
+		(property "Reference" "R48"
 			(at 100.33 58.42 90)
 			(effects
 				(font
@@ -8058,7 +8058,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 100.33 65.278 90)
 			(effects
 				(font
@@ -8094,7 +8094,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R42")
+					(reference "R48")
 					(unit 1)
 				)
 			)
@@ -8110,7 +8110,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ad55df32-c9f4-4953-917e-a960d4228990")
-		(property "Reference" "R39"
+		(property "Reference" "R45"
 			(at 54.61 91.4399 0)
 			(effects
 				(font
@@ -8128,7 +8128,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 58.928 92.71 90)
 			(effects
 				(font
@@ -8164,7 +8164,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R39")
+					(reference "R45")
 					(unit 1)
 				)
 			)
@@ -8179,7 +8179,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bbbcf4c9-c796-4f08-aa59-172e84575f43")
-		(property "Reference" "R45"
+		(property "Reference" "R51"
 			(at 100.33 135.89 90)
 			(effects
 				(font
@@ -8195,7 +8195,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 100.33 142.748 90)
 			(effects
 				(font
@@ -8231,7 +8231,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R45")
+					(reference "R51")
 					(unit 1)
 				)
 			)
@@ -8263,7 +8263,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_THT:L_Axial_L6.6mm_D2.7mm_P2.54mm_Vertical_Vishay_IM-2"
+		(property "Footprint" ""
 			(at 250.19 92.71 0)
 			(effects
 				(font
@@ -8436,7 +8436,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 232.41 117.1448 0)
 			(effects
 				(font
@@ -8487,7 +8487,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c6274523-3de3-44d1-b6ef-e2aa74c753f0")
-		(property "Reference" "R55"
+		(property "Reference" "R61"
 			(at 237.49 97.7899 0)
 			(effects
 				(font
@@ -8505,7 +8505,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 233.172 99.06 90)
 			(effects
 				(font
@@ -8541,7 +8541,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R55")
+					(reference "R61")
 					(unit 1)
 				)
 			)
@@ -8661,7 +8661,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c86dbb9a-1d63-4cdf-80f9-43dd2ff1c92b")
-		(property "Reference" "R48"
+		(property "Reference" "R54"
 			(at 185.42 120.6499 0)
 			(effects
 				(font
@@ -8679,7 +8679,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 189.738 121.92 90)
 			(effects
 				(font
@@ -8715,7 +8715,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R48")
+					(reference "R54")
 					(unit 1)
 				)
 			)
@@ -8746,7 +8746,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 54.61 59.9948 0)
 			(effects
 				(font
@@ -8798,7 +8798,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cbb17d5a-1787-45c1-a58f-b17f30d65901")
-		(property "Reference" "R46"
+		(property "Reference" "R52"
 			(at 185.42 69.8499 0)
 			(effects
 				(font
@@ -8816,7 +8816,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 189.738 71.12 90)
 			(effects
 				(font
@@ -8852,7 +8852,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R46")
+					(reference "R52")
 					(unit 1)
 				)
 			)
@@ -8883,7 +8883,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" ""
 			(at 185.42 141.2748 0)
 			(effects
 				(font
@@ -8950,7 +8950,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 232.41 66.3448 0)
 			(effects
 				(font
@@ -9206,7 +9206,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e2941b54-02c6-463e-8a35-553f3de16820")
-		(property "Reference" "R33"
+		(property "Reference" "R39"
 			(at 40.64 81.28 90)
 			(effects
 				(font
@@ -9258,7 +9258,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R33")
+					(reference "R39")
 					(unit 1)
 				)
 			)
@@ -9274,7 +9274,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e4962660-0852-47d1-a032-c129d5a51764")
-		(property "Reference" "R40"
+		(property "Reference" "R46"
 			(at 54.61 116.8399 0)
 			(effects
 				(font
@@ -9292,7 +9292,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 58.928 118.11 90)
 			(effects
 				(font
@@ -9328,7 +9328,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R40")
+					(reference "R46")
 					(unit 1)
 				)
 			)
@@ -9553,7 +9553,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ecd7bbdb-f601-46e4-9875-8bfaa1a61fcf")
-		(property "Reference" "R57"
+		(property "Reference" "R63"
 			(at 237.49 149.8599 0)
 			(effects
 				(font
@@ -9571,7 +9571,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 233.172 151.13 90)
 			(effects
 				(font
@@ -9607,7 +9607,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R57")
+					(reference "R63")
 					(unit 1)
 				)
 			)
@@ -9688,7 +9688,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f26f914e-421a-417d-a563-6a589b69e5ef")
-		(property "Reference" "R38"
+		(property "Reference" "R44"
 			(at 54.61 66.0399 0)
 			(effects
 				(font
@@ -9706,7 +9706,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 58.928 67.31 90)
 			(effects
 				(font
@@ -9742,7 +9742,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R38")
+					(reference "R44")
 					(unit 1)
 				)
 			)
@@ -9840,7 +9840,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" ""
 			(at 87.3252 185.42 0)
 			(effects
 				(font
@@ -9956,7 +9956,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fbf2998c-0508-401b-bc4f-828fb6b5aa55")
-		(property "Reference" "R54"
+		(property "Reference" "R60"
 			(at 237.49 72.3899 0)
 			(effects
 				(font
@@ -9974,7 +9974,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 233.172 73.66 90)
 			(effects
 				(font
@@ -10010,7 +10010,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R54")
+					(reference "R60")
 					(unit 1)
 				)
 			)
@@ -10025,7 +10025,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fd720ce2-c779-49dc-b13f-cec3057f109e")
-		(property "Reference" "R44"
+		(property "Reference" "R50"
 			(at 100.33 109.22 90)
 			(effects
 				(font
@@ -10041,7 +10041,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
+		(property "Footprint" ""
 			(at 100.33 116.078 90)
 			(effects
 				(font
@@ -10077,7 +10077,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R44")
+					(reference "R50")
 					(unit 1)
 				)
 			)
@@ -10092,7 +10092,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ff5abfc6-7970-4ecd-b7d6-8faa0cf2af11")
-		(property "Reference" "R52"
+		(property "Reference" "R58"
 			(at 218.44 113.03 90)
 			(effects
 				(font
@@ -10144,7 +10144,7 @@
 		(instances
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/614d86c0-98d4-4443-ada7-f3c86ea6950a"
-					(reference "R52")
+					(reference "R58")
 					(unit 1)
 				)
 			)
