@@ -477,7 +477,9 @@
     "pinned_footprint_libs": [
       "Zero-Stomp"
     ],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "Zero-Stomp"
+    ]
   },
   "meta": {
     "filename": "Zero-Stomp.kicad_pro",
