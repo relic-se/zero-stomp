@@ -5752,7 +5752,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "AudioJack4"
+		(property "Value" "HEADPHONE"
 			(at 196.85 76.8351 0)
 			(effects
 				(font
@@ -5761,7 +5761,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_PH_S4B-PH-K_1x04_P2.00mm_Horizontal"
 			(at 187.96 80.01 0)
 			(effects
 				(font
