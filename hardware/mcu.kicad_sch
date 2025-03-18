@@ -4073,6 +4073,12 @@
 		(uuid "b6dcb34d-34b4-4b7d-adce-3a2dfcf660e6")
 	)
 	(junction
+		(at 196.85 66.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c174992c-91c8-4c49-9b18-d6c266315a2f")
+	)
+	(junction
 		(at 232.41 21.59)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5229,7 +5235,7 @@
 	)
 	(wire
 		(pts
-			(xy 194.31 66.04) (xy 201.93 66.04)
+			(xy 194.31 66.04) (xy 196.85 66.04)
 		)
 		(stroke
 			(width 0)
@@ -5366,6 +5372,16 @@
 			(type default)
 		)
 		(uuid "861c5db7-a619-4fad-98c8-e6bd742a67b6")
+	)
+	(wire
+		(pts
+			(xy 196.85 66.04) (xy 205.74 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8693f6e3-12b7-4c06-9b9c-01a48e8af948")
 	)
 	(wire
 		(pts
@@ -6778,7 +6794,7 @@
 		(uuid "a2e2c7cd-15ab-4cd1-9924-342a7297cd46")
 	)
 	(label "GPIO0"
-		(at 201.93 66.04 180)
+		(at 205.74 66.04 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7908,6 +7924,72 @@
 			(project "Zero-Stomp"
 				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/18032a8d-c86f-4e94-b2bf-e3bf4b84450f"
 					(reference "C21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 196.85 66.04 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "13706b59-8089-41d1-90c4-ddd94b4aabb5")
+		(property "Reference" "TP7"
+			(at 196.85 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 199.39 64.0079 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
+			(at 201.93 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 201.93 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 196.85 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "995ba7be-b432-4665-b699-80ad85603bd0")
+		)
+		(instances
+			(project "Zero-Stomp"
+				(path "/8c8d5801-9c58-4283-98ac-c6a8e7250e15/18032a8d-c86f-4e94-b2bf-e3bf4b84450f"
+					(reference "TP7")
 					(unit 1)
 				)
 			)
