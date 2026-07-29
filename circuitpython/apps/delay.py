@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: GPLv3
 
-# NOTE: Currently not supported as of CircuitPython 9.2.1
-
 from audiodelays import Echo
 from audiofilters import Filter
 import synthio
@@ -67,7 +65,7 @@ device.assign_knob("Width", delay_effect.delay_ms.a, "scale", 0.0, MAX_SCALE)
 
 if FILTER:
     filter_effect = Filter(
-        filter=synthio.BlockBiquad(synthio.FilterMode.LOW_PASS, MAX_FILTER),
+        filter=synthio.Biquad(synthio.FilterMode.LOW_PASS, MAX_FILTER),
         sample_rate=zero_stomp.SAMPLE_RATE,
         channel_count=zero_stomp.CHANNELS,
     )

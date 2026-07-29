@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: GPLv3
 
-# NOTE: Currently not supported as of CircuitPython 9.2.1
-
 from audiofilters import Filter
 import synthio
 
@@ -27,7 +25,7 @@ device.mix = 1.0
 
 # Audio Objects
 filter_effect = Filter(
-    filter=synthio.BlockBiquad(
+    filter=synthio.Biquad(
         synthio.FilterMode.BAND_PASS,
         synthio.Math(
             synthio.MathOperation.SCALE_OFFSET,

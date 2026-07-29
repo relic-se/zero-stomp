@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: GPLv3
 
-# NOTE: Currently not supported as of CircuitPython 9.2.1
-
 import synthio
 import ulab.numpy as np
 

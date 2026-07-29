@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: GPLv3
 
-# NOTE: Currently not supported as of CircuitPython 9.2.3
-
 from audiofilters import Filter
 import synthio
 
@@ -40,7 +38,7 @@ device.assign_knob("Level", device, "level")
 
 bands = []
 for i, frequency in enumerate(BANDS):
-    bands.append(synthio.BlockBiquad(
+    bands.append(synthio.Biquad(
         mode=synthio.FilterMode.PEAKING_EQ,  # NOTE: Filter Mode
         frequency=frequency,
         Q=Q,
