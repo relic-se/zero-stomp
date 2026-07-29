@@ -9,8 +9,9 @@ import zero_stomp
 zero_stomp.CURRENT = __file__
 
 # Constants
-BANDS = (100, 200, 400, 800, 1600, 3200)  # 6 band
-#BANDS = (31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000)  # 10 band
+BANDS = (200, 800, 3200)  # 3 band
+# BANDS = (100, 200, 400, 800, 1600, 3200)  # 6 band
+# BANDS = (31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000)  # 10 band
 
 Q = 0.7071067811865475
 
@@ -34,7 +35,8 @@ filter_effect = Filter(
 )
 
 # Setup controls
-device.assign_knob("Level", device, "level")
+if len(BANDS) != 3:
+    device.assign_knob("Level", device, "level")
 
 bands = []
 for i, frequency in enumerate(BANDS):
