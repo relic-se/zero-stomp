@@ -4,7 +4,7 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiofilters
+from audiofilters import Filter
 import synthio
 
 import zero_stomp
@@ -26,7 +26,7 @@ device.title = "Wah"
 device.mix = 1.0
 
 # Audio Objects
-filter_effect = audiofilters.Filter(
+filter_effect = Filter(
     filter=synthio.BlockBiquad(
         synthio.FilterMode.BAND_PASS,
         synthio.Math(
@@ -47,8 +47,11 @@ filter_effect = audiofilters.Filter(
 )
 
 # Audio Chain
-filter_effect.play(device.i2s)
-device.i2s.play(filter_effect)
+device.audio_out.play(
+    filter_effect.play(
+        device.audio_in
+    )
+)
 
 # Setup controls
 device.assign_knob("Filter", filter_effect.filter.frequency.c, "a", MIN_FILTER, MAX_FILTER)

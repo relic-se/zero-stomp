@@ -4,7 +4,7 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiofilters
+from audiofilters import Distortion, Filter
 import synthio
 
 import zero_stomp
@@ -28,7 +28,7 @@ device.title = "Distortion"
 device.mix = 1.0
 
 # Audio Objects
-distortion_effect = audiofilters.Distortion(
+distortion_effect = Distortion(
     drive=synthio.Math(
         synthio.MathOperation.SUM,
         0.0, # Knob
@@ -40,7 +40,7 @@ distortion_effect = audiofilters.Distortion(
     channel_count=zero_stomp.CHANNELS,
 )
 
-filter_effect = audiofilters.Filter(
+filter_effect = Filter(
     filter=(
         # TODO: Swap with shelf when available
         synthio.BlockBiquad(synthio.FilterMode.HIGH_PASS, MIN_FILTER),
@@ -51,9 +51,13 @@ filter_effect = audiofilters.Filter(
 )
 
 # Audio Chain
-distortion_effect.play(device.i2s)
-filter_effect.play(distortion_effect)
-device.i2s.play(filter_effect)
+device.audio_out.play(
+    filter_effect.play(
+        distortion_effect.play(
+            device.audio_in
+        )
+    )
+)
 
 # Assign controls
 # TODO: Simplify with single "Level" knob

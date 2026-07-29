@@ -4,7 +4,7 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.3
 
-import audiofilters
+from audiofilters import Filter
 import synthio
 
 import zero_stomp
@@ -25,7 +25,7 @@ device.title = "Graphic EQ"
 device.mix = 1.0
 
 # Audio Objects
-filter_effect = audiofilters.Filter(
+filter_effect = Filter(
     mix=1.0,
 
     buffer_size=zero_stomp.BUFFER_SIZE,
@@ -51,8 +51,11 @@ bands = tuple(bands)
 filter_effect.filter = bands
 
 # Audio Chain
-filter_effect.play(device.i2s)
-device.i2s.play(filter_effect)
+device.audio_out.play(
+    filter_effect.play(
+        device.audio_in
+    )
+)
 
 # Update Loop
 while True:

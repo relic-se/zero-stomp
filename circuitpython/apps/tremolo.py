@@ -61,7 +61,7 @@ lfo = synthio.Math(
 synth.blocks.append(lfo)  # Use synth to update LFO
 
 # Audio Chain
-device.i2s.play(synth)  # No audio will actually happen
+device.audio_out.play(synth)  # No audio will actually happen
 
 # Assign controls
 def set_waveform(index: int):
