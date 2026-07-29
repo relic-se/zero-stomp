@@ -2,9 +2,7 @@
 #
 # SPDX-License-Identifier: GPLv3
 
-# NOTE: Currently not supported as of CircuitPython 9.2.1
-
-from audiofilters import Distortion, Filter
+from audiofilters import Distortion, Filter, DistortionMode
 import synthio
 
 import zero_stomp
@@ -17,10 +15,22 @@ MAX_PRE_GAIN = 60
 MIN_POST_GAIN = -80
 MAX_POST_GAIN = 24
 
+FILTER = False
 MIN_FILTER = 50
 MAX_FILTER = 20000
 
-NUM_MODES = 4
+if zero_stomp.is_rp2040():
+    MODES = (
+        DistortionMode.LOFI,
+        DistortionMode.CLIP,
+    )
+else:
+    MODES = (
+        DistortionMode.LOFI,
+        DistortionMode.CLIP,
+        DistortionMode.OVERDRIVE,
+        DistortionMode.WAVESHAPE,
+    )
 
 # Device configuration
 device = zero_stomp.ZeroStomp()
@@ -38,25 +48,33 @@ distortion_effect = Distortion(
     mix=1.0,
     sample_rate=zero_stomp.SAMPLE_RATE,
     channel_count=zero_stomp.CHANNELS,
+    soft_clip=not zero_stomp.is_rp2040(),
 )
 
-filter_effect = Filter(
-    filter=(
-        # TODO: Swap with shelf when available
-        synthio.BlockBiquad(synthio.FilterMode.HIGH_PASS, MIN_FILTER),
-        synthio.BlockBiquad(synthio.FilterMode.LOW_PASS, MAX_FILTER),
-    ),
-    sample_rate=zero_stomp.SAMPLE_RATE,
-    channel_count=zero_stomp.CHANNELS,
-)
+if FILTER:
+    filter_effect = Filter(
+        filter=(
+            # TODO: Swap with shelf when available
+            synthio.Biquad(synthio.FilterMode.HIGH_PASS, MIN_FILTER),
+            synthio.Biquad(synthio.FilterMode.LOW_PASS, MAX_FILTER),
+        ),
+        sample_rate=zero_stomp.SAMPLE_RATE,
+        channel_count=zero_stomp.CHANNELS,
+    )
 
 # Audio Chain
-device.audio_out.play(
-    filter_effect.play(
-        distortion_effect.play(
-            device.audio_in
+if FILTER:
+    device.audio_out.play(
+        filter_effect.play(
+            distortion_effect
         )
     )
+else:
+    device.audio_out.play(
+        distortion_effect
+    )
+distortion_effect.play(
+    device.audio_in
 )
 
 # Assign controls
@@ -66,13 +84,15 @@ device.assign_knob("Post", distortion_effect, "post_gain", MIN_POST_GAIN, MAX_PO
 device.assign_knob("Drive", distortion_effect.drive, "a")
 
 device.assign_knob("Mix", device, "mix")
-device.assign_knob("Low", filter_effect.filter[0], "frequency", MAX_FILTER, MIN_FILTER)
-device.assign_knob("High", filter_effect.filter[1], "frequency", MIN_FILTER, MAX_FILTER)
+
+if FILTER:
+    device.assign_knob("Low", filter_effect.filter[0], "frequency", MAX_FILTER, MIN_FILTER)
+    device.assign_knob("High", filter_effect.filter[1], "frequency", MIN_FILTER, MAX_FILTER)
 
 device.add_knob(
     title="Mode",
-    value=distortion_effect.mode / (NUM_MODES - 1),
-    callback=lambda value: zero_stomp.set_attribute(distortion_effect, "mode", int(zero_stomp.map_value(value, 0, NUM_MODES - 1))),
+    value=MODES.index(distortion_effect.mode) / (len(MODES) - 1),
+    callback=lambda value: zero_stomp.set_attribute(distortion_effect, "mode", MODES[int(zero_stomp.map_value(value, 0, len(MODES) - 1))]),
 )
 
 # Update Loop
