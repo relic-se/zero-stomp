@@ -148,7 +148,7 @@ _programs = None
 def get_programs() -> tuple:
     global _programs
     if _programs is None:
-        _programs = tuple(sorted(list(filter(lambda filename: filename.endswith(".py"), os.listdir(SCRIPTS)))))
+        _programs = tuple(sorted(list(filter(lambda filename: not filename.startswith(".") and filename.endswith(".py"), os.listdir(SCRIPTS)))))
     return _programs
 
 def get_default_program() -> str:
