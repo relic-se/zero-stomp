@@ -2,15 +2,15 @@
 #
 # SPDX-License-Identifier: GPLv3
 
+import array
 import displayio
 import math
 import terminalio
 import ulab.numpy as np
-import ulab.utils
+from ulab.utils import spectrogram
 import vectorio
 
-import adafruit_display_text.label
-import pio_i2s
+from adafruit_display_text.label import Label
 
 import zero_stomp
 zero_stomp.CURRENT = __file__
@@ -25,27 +25,16 @@ FREQ_OFFSET = -11.5  # offset measured during calibration with A4 (440hz)
 LOG2_A4 = math.log(440, 2)
 NOTES = ["A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"]
 
-device = zero_stomp.ZeroStomp(False, False)
+device = zero_stomp.ZeroStomp()
 device.title = "Tuner"
 device.mix = 0.0
 device.level = 0.0
-
-i2s = pio_i2s.I2S(
-    bit_clock=zero_stomp.I2S_BCLK,
-    word_select=zero_stomp.I2S_LRCLK,
-    data_out=zero_stomp.I2S_DOUT,
-    data_in=zero_stomp.I2S_DIN,
-    channel_count=1,
-    sample_rate=zero_stomp.SAMPLE_RATE,
-    samples_signed=zero_stomp.SAMPLES_SIGNED,
-    buffer_size=SAMPLE_SIZE,
-)
 
 controls = displayio.Group()
 device.append(controls)
 
 # Note name label
-note_text = adafruit_display_text.label.Label(
+note_text = Label(
     font=terminalio.FONT,
     text="",
     color=0xFFFFFF,
@@ -73,11 +62,13 @@ max_freq = zero_stomp.SAMPLE_RATE / 2  # nyquist
 # Linear distribution of indexes used to calculate weighted mean
 dist = np.arange(SAMPLE_SIZE // 2, dtype=np.int16)
 
+buffer = array.array("h", [0] * SAMPLE_SIZE)
 while True:
     device.update()
     
     # Grab a single buffer from the codec and convert it to an np.ndarray object
-    data = np.array(i2s.read(block=True), dtype=np.int16)
+    device.audio_in.record(buffer, len(buffer))
+    data = np.array(buffer, dtype=np.int16)
     
     # Calculate maximum level
     mean = np.mean(data)
@@ -94,7 +85,7 @@ while True:
         continue
     
     # Perform Fourier Fast Transform (FFT) algorithm on audio signal
-    data = ulab.utils.spectrogram(data)
+    data = spectrogram(data)
     
     # Remove upper half of spectrogram
     data = data[:len(data) // 2]
