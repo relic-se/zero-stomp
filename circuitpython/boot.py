@@ -29,7 +29,7 @@ usb_cdc.enable(console=True, data=False)
 
 storage.remount("/", readonly=False)
 m = storage.getmount("/")
-m.label = "ZERO-STOMP"
+m.label = "ZEROSTOMP"
 
 storage.remount("/", readonly=False)
 storage.enable_usb_drive()
