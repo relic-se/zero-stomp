@@ -3,27 +3,29 @@
 # SPDX-License-Identifier: GPLv3
 
 import analogio
-import audiobusio
+from audiobusio import I2SOut
+from audioi2sin import I2SIn
 import board
-import busio
+from busio import SPI, UART, I2C
 import digitalio
 import displayio
+from fourwire import FourWire
 import json
 import math
 import microcontroller
 import os
-import pwmio
+from pwmio import PWMOut
 import supervisor
 import terminalio
 import usb_midi
 import vectorio
 
-import adafruit_debouncer
-import adafruit_displayio_ssd1306
-import adafruit_display_text.label
-import adafruit_midi
+from adafruit_debouncer import Debouncer
+from adafruit_displayio_ssd1306 import SSD1306
+from adafruit_display_text.label import Label
+from adafruit_midi import MIDI
 import adafruit_wm8960.advanced
-import neopixel
+from neopixel import NeoPixel
 
 try:
     from typing import Callable
@@ -248,7 +250,7 @@ class Knob(displayio.Group):
         self.append(self._knob)
 
         # Title
-        self._title = adafruit_display_text.label.Label(
+        self._title = Label(
             font=terminalio.FONT,
             text=title,
             color=0xFFFFFF,
@@ -317,12 +319,12 @@ class ZeroStomp(displayio.Group):
         super().__init__()
 
         # NeoPixel
-        self._pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
+        self._pixel = NeoPixel(board.NEOPIXEL, 1)
         self.pixel = (0, 0, 255)
 
         # Displayio
-        self._display_bus = displayio.FourWire(
-            busio.SPI(
+        self._display_bus = FourWire(
+            SPI(
                 clock=DISPLAY_SCK,
                 MOSI=DISPLAY_TX,
             ),
@@ -330,7 +332,7 @@ class ZeroStomp(displayio.Group):
             chip_select=DISPLAY_CS,
             reset=DISPLAY_RESET,
         )
-        self._display = adafruit_displayio_ssd1306.SSD1306(
+        self._display = SSD1306(
             self._display_bus,
             width=DISPLAY_WIDTH,
             height=DISPLAY_HEIGHT,
@@ -338,7 +340,7 @@ class ZeroStomp(displayio.Group):
         self._display.root_group = self
 
         # Title Text
-        self._title = adafruit_display_text.label.Label(
+        self._title = Label(
             font=terminalio.FONT,
             text="Zero Stomp",
             color=0xFFFFFF,
@@ -361,28 +363,28 @@ class ZeroStomp(displayio.Group):
         self._expression_pin = analogio.AnalogIn(ADC_EXPR)
 
         # Stomp Switch
-        self._stomp_led = pwmio.PWMOut(STOMP_LED, frequency=100000)  # frequency is out of hearing range to prevent audible noise
+        self._stomp_led = PWMOut(STOMP_LED, frequency=100000)  # frequency is out of hearing range to prevent audible noise
         self._stomp_led_control = True
         self._stomp_switch_pin = digitalio.DigitalInOut(STOMP_SWITCH)
         self._stomp_switch_pin.direction = digitalio.Direction.INPUT
         self._stomp_switch_pin.pull = digitalio.Pull.UP
-        self._stomp_switch = adafruit_debouncer.Debouncer(self._stomp_switch_pin)
+        self._stomp_switch = Debouncer(self._stomp_switch_pin)
         self._stomp_count = 0
 
         self.pixel = (0, 255, 0)
 
         # MIDI
-        self._midi_uart_bus = busio.UART(
+        self._midi_uart_bus = UART(
             UART_TX,
             UART_RX,
             baudrate=31250,
             timeout=0.001,
         )
-        self._midi_uart = adafruit_midi.MIDI(
+        self._midi_uart = MIDI(
             midi_in=self._midi_uart_bus,
             midi_out=self._midi_uart_bus,
         )
-        self._midi_usb = adafruit_midi.MIDI(
+        self._midi_usb = MIDI(
             midi_in=usb_midi.ports[0],
             midi_out=usb_midi.ports[1],
         )
@@ -390,7 +392,7 @@ class ZeroStomp(displayio.Group):
         self.pixel = (255, 255, 0)
 
         # Audio Codec
-        self._i2c = busio.I2C(
+        self._i2c = I2C(
             scl=I2C_SCL,
             sda=I2C_SDA,
             frequency=1000000,  # fast mode plus
@@ -434,15 +436,21 @@ class ZeroStomp(displayio.Group):
         self.pixel = (255, 0, 0)
 
         ## Begin digital audio bus
-        self.i2s = audiobusio.I2S(
+        self.audio_in = I2SIn(
             bit_clock=I2S_BCLK,
             word_select=I2S_LRCLK,
-            data_out=I2S_DOUT,
-            data_in=I2S_DIN,
-            channel_count=CHANNELS,
+            data=I2S_DIN,
             sample_rate=SAMPLE_RATE,
+            bit_depth=16,
+            mono=(CHANNELS==1),
             samples_signed=SAMPLES_SIGNED,
-            buffer_size=BUFFER_SIZE,
+        )
+
+        self.audio_out = I2SOut(
+            bit_clock=I2S_BCLK,
+            word_select=I2S_LRCLK,
+            data=I2S_DOUT,
+            external_clock=True,
         )
 
         self.pixel = (32, 0, 32)

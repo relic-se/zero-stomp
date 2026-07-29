@@ -4,8 +4,8 @@
 
 # NOTE: Currently not supported as of CircuitPython 9.2.1
 
-import audiodelays
-import audiofilters
+from audiodelays import Echo
+from audiofilters import Filter
 import synthio
 
 import zero_stomp
@@ -39,7 +39,7 @@ delay_ms = synthio.Math(
     MAX_EXPRESSION,
     250 # Delay Value
 )
-delay_effect = audiodelays.Echo(
+delay_effect = Echo(
     max_delay_ms=TAPE_LENGTH,
     delay_ms=synthio.Math(
         synthio.MathOperation.SCALE_OFFSET,
@@ -66,7 +66,7 @@ device.assign_knob("Speed", delay_effect.delay_ms.a, "rate", MIN_SPEED, MAX_SPEE
 device.assign_knob("Width", delay_effect.delay_ms.a, "scale", 0.0, MAX_SCALE)
 
 if FILTER:
-    filter_effect = audiofilters.Filter(
+    filter_effect = Filter(
         filter=synthio.BlockBiquad(synthio.FilterMode.LOW_PASS, MAX_FILTER),
         sample_rate=zero_stomp.SAMPLE_RATE,
         channel_count=zero_stomp.CHANNELS,
@@ -74,15 +74,13 @@ if FILTER:
 
     device.assign_knob("Filter", filter_effect.filter, "frequency", MIN_FILTER, MAX_FILTER)
 
-    # Audio Chain
-    device.i2s.play(filter_effect)
+# Audio Chain
+if FILTER:
+    device.audio_out.play(filter_effect)
     filter_effect.play(delay_effect)
-    delay_effect.play(device.i2s, loop=True)
-
 else:
-    # Audio Chain
-    device.i2s.play(delay_effect)
-    delay_effect.play(device.i2s)
+    device.audio_out.play(delay_effect)
+delay_effect.play(device.audio_in)
 
 # Update Loop
 while True:
